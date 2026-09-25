@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Site Settings — Carolynn Heil Interiors</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,900;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font:        'Montserrat', sans-serif;
+  --black:       #0e0e0e;
+  --white:       #ffffff;
+  --off-white:   #f7f6f3;
+  --rule:        rgba(14,14,14,0.09);
+  --muted:       rgba(14,14,14,0.50);
+  --ch-base:     #b5451b;
+  --header-h:    68px;
+  --pad:         clamp(1.5rem, 5vw, 4.5rem);
+  --max-w:       860px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--off-white); color: var(--black); font-family: var(--font); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+/* ── Header ──────────────────────────────────────────────── */
+header {
+  height: var(--header-h); display: flex; align-items: center;
+  justify-content: space-between; padding: 0 var(--pad);
+  background: var(--white); border-bottom: 1px solid var(--rule);
+  position: sticky; top: 0; z-index: 100;
+}
+.ch-logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -0.03em; color: var(--ch-base); text-decoration: none; }
+.header-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.20em; text-transform: uppercase; color: var(--muted); }
+.back-link { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+.back-link:hover { color: var(--ch-base); }
+
+/* ── Page ────────────────────────────────────────────────── */
+.page { max-width: var(--max-w); margin: 0 auto; padding: clamp(2rem,5vw,4rem) var(--pad) 4rem; }
+
+.page-eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ch-base); display: block; margin-bottom: 0.6rem; }
+.page-title { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 300; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+.page-title strong { font-weight: 900; }
+.page-sub { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 2.5rem; }
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card {
+  background: var(--white); border-radius: 6px;
+  border: 1px solid var(--rule); padding: clamp(1.4rem,3vw,2rem);
+  margin-bottom: 1.2rem;
+}
+.card-title { font-size: 0.70rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.card-title-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ch-base); flex-shrink: 0; }
+
+/* ── Color controls ──────────────────────────────────────── */
+.color-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 1.2rem; }
+
+.color-pick-wrap { position: relative; width: 48px; height: 40px; border-radius: 6px; overflow: hidden; border: 1.5px solid var(--rule); cursor: pointer; flex-shrink: 0; }
+.color-pick-wrap input[type="color"] { opacity: 0; position: absolute; inset: 0; width: 100%; height: 100%; cursor: pointer; border: none; }
+.color-swatch-preview { position: absolute; inset: 0; pointer-events: none; }
+
+.color-value { font-size: 0.78rem; font-family: 'Courier New', monospace; font-weight: 500; color: var(--black); background: var(--off-white); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 12px; min-width: 90px; letter-spacing: 0.04em; }
+
+.oklch-display { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.04em; }
+
+/* ── Big action buttons ───────────────────────────────────── */
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem; }
+
+.btn-action {
+  font-family: var(--font); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 11px 22px; border-radius: 4px; cursor: pointer;
+  transition: all 0.18s; border: 1.5px solid transparent;
+}
+.btn-primary { background: var(--ch-base); color: var(--white); border-color: var(--ch-base); }
+.btn-primary:hover { opacity: 0.85; }
+.btn-outline { background: transparent; color: var(--black); border-color: var(--rule); }
+.btn-outline:hover { border-color: var(--black); }
+.btn-danger  { background: transparent; color: #c0392b; border-color: rgba(192,57,43,0.30); }
+.btn-danger:hover  { background: #c0392b; color: var(--white); border-color: #c0392b; }
+
+/* ── Scheme grid ─────────────────────────────────────────── */
+.scheme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 8px; margin-bottom: 1.2rem; }
+.scheme-btn {
+  font-family: var(--font); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 10px 14px; border-radius: 4px; cursor: pointer;
+  border: 1.5px solid var(--rule); background: var(--off-white);
+  color: var(--muted); transition: all 0.18s; text-align: left;
+}
+.scheme-btn:hover { border-color: var(--black); color: var(--black); }
+.scheme-btn.active { background: var(--ch-base); color: var(--white); border-color: var(--ch-base); }
+.scheme-desc { font-size: 0.60rem; font-weight: 400; opacity: 0.75; display: block; margin-top: 2px; letter-spacing: 0.04em; text-transform: none; }
+
+/* ── Saved palettes / favorites ───────────────────────────── */
+.saved-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+.saved-swatch {
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+  border: 2.5px solid transparent; transition: transform 0.15s, border-color 0.15s;
+  flex-shrink: 0; position: relative;
+}
+.saved-swatch:hover { transform: scale(1.12); }
+.saved-swatch.active { border-color: var(--black); }
+.saved-swatch .remove-x {
+  position: absolute; top: -4px; right: -4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--black); color: var(--white);
+  font-size: 8px; display: none; align-items: center; justify-content: center;
+  cursor: pointer; font-weight: 700;
+}
+.saved-swatch:hover .remove-x { display: flex; }
+
+.add-swatch-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px dashed rgba(14,14,14,0.25);
+  background: transparent; cursor: pointer; font-size: 1.1rem;
+  color: var(--muted); display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, color 0.15s; flex-shrink: 0;
+}
+.add-swatch-btn:hover { border-color: var(--ch-base); color: var(--ch-base); }
+
+/* ── Palette preview ─────────────────────────────────────── */
+.palette-preview { display: flex; gap: 4px; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.preview-chip {
+  height: 48px; border-radius: 4px; flex: 1; min-width: 32px;
+  transition: transform 0.15s; cursor: default; position: relative;
+}
+.preview-chip:hover { transform: translateY(-3px); z-index: 1; }
+.preview-chip .chip-label {
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  text-align: center; font-size: 8px; font-weight: 600;
+  color: rgba(255,255,255,0.7); letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+/* ── Site preview strip ──────────────────────────────────── */
+.site-preview {
+  border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--rule); margin-bottom: 1.2rem;
+}
+.preview-header {
+  height: 44px; background: var(--white);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1rem; border-bottom: 1px solid var(--rule);
+}
+.preview-logo { font-weight: 900; font-size: 1rem; letter-spacing: -0.03em; }
+.preview-nav { display: flex; gap: 12px; }
+.preview-nav span { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.preview-bars { height: 10px; display: flex; overflow: hidden; }
+.preview-bar  { height: 100%; }
+.preview-hero { background: var(--white); padding: 1.2rem 1rem; }
+.preview-headline { font-size: 1.1rem; font-weight: 300; margin-bottom: 0.4rem; }
+.preview-headline strong { font-weight: 900; }
+.preview-sub { font-size: 0.65rem; color: var(--muted); margin-bottom: 0.8rem; font-weight: 300; }
+.preview-collab { font-size: 0.70rem; font-style: italic; font-weight: 300; }
+.preview-footer { padding: 0.8rem 1rem; }
+.preview-footer-logo { font-weight: 900; font-size: 0.9rem; letter-spacing: -0.03em; }
+
+/* ── Save confirmation toast ─────────────────────────────── */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(60px);
+  background: var(--black); color: var(--white);
+  padding: 10px 24px; border-radius: 4px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.10em;
+  text-transform: uppercase; opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none; z-index: 999; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 480px) {
+  .scheme-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Color override grid ─────────────────────────────────── */
+.override-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 1.2rem;
+}
+.override-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.override-pick-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;   /* square */
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1.5px solid var(--rule);
+  cursor: pointer;
+}
+.override-pick-wrap input[type="color"] {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: none;
+}
+.override-swatch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 0.2s;
+}
+.override-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  color: var(--muted);
+  text-align: center;
+}
+.override-hex {
+  font-size: 0.55rem;
+  font-family: 'Courier New', monospace;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+.override-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle-track {
+  width: 38px; height: 20px;
+  border-radius: 20px;
+  background: var(--rule);
+  border: 1.5px solid rgba(14,14,14,0.15);
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.toggle-track.on { background: var(--ch-base); border-color: var(--ch-base); }
+.toggle-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  position: absolute;
+  top: 1px; left: 1px;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.20);
+}
+.toggle-track.on .toggle-thumb { transform: translateX(18px); }
+.toggle-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.toggle-sublabel {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--muted);
+  margin-left: auto;
+}
+.override-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+.btn-xs {
+  font-family: var(--font);
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 7px 14px; border-radius: 3px; cursor: pointer;
+  border: 1.5px solid var(--rule);
+  background: transparent; color: var(--muted);
+  transition: all 0.15s;
+}
+.btn-xs:hover { border-color: var(--black); color: var(--black); }
+
+@media (max-width: 480px) {
+  .override-grid { grid-template-columns: repeat(4,1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
+  <span class="header-title">Site Settings</span>
+  <a href="index.html" class="back-link">← Back to site</a>
+</header>
+
+<div class="page">
+
+  <span class="page-eyebrow">Carolynn Heil Interiors</span>
+  <h1 class="page-title">Site <strong>Color Settings</strong></h1>
+  <p class="page-sub">Choose your base color here and it flows across every page of the site automatically — the φ bars, logo, accents, process steps, and footer all update instantly.</p>
+
+  <!-- ── QUICK ACTIONS ─────────────────────────────────── -->
+  <div class="card">
+    <div class="card-title"><div class="card-title-dot"></div>Quick Actions</div>
+    <div class="btn-row">
+      <button class="btn-action btn-primary" id="randomizeBtn">Randomize ↗</button>
+      <button class="btn-action btn-outline"  id="iterateBtn">Iterate +30° (Analogous)</button>
+      <button class="btn-action btn-danger"   id="resetBtn">Reset to Default</button>
+    </div>
+    <p style="font-size:0.72rem;color:var(--muted);font-weight:300;">Randomize picks a fresh color from across the full spectrum. Iterate steps through analogous hues in 30° increments — subtle seasonal shifts.</p>
+  </div>
+
+  <!-- ── BASE COLOR ─────────────────────────────────────── -->
+  <div class="card">
+    <div class="card-title"><div class="card-title-dot"></div>Base Color</div>
+    <div class="color-row">
+      <div class="color-pick-wrap">
+        <div class="color-swatch-preview" id="colorSwatch"></div>
+        <input type="color" id="colorPicker" title="Choose base color"/>
+      </div>
+      <span class="color-value" id="colorHex">#b5451b</span>
+      <span class="oklch-display" id="colorOklch">OKLCH 0° L50 C0.14</span>
+    </div>
+    <div class="palette-preview" id="palettePreview"></div>
+  </div>
+
+  <!-- ── SAVED FAVORITES ────────────────────────────────── -->
+  <div class="card">
+    <div class="card-title"><div class="card-title-dot"></div>Saved Colors</div>
+    <p style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-bottom:1rem;">Save colors you love to come back to. Click + to save the current color. Click a saved swatch to apply it.</p>
+    <div class="saved-row" id="savedRow">
+      <button class="add-swatch-btn" id="addSavedBtn" title="Save current color">+</button>
+    </div>
+  </div>
+
+  <!-- ── HARMONY SCHEME ─────────────────────────────────── -->
+  <div class="card">
+    <div class="card-title"><div class="card-title-dot"></div>Harmony Scheme</div>
+    <p style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-bottom:1rem;">Controls how accent colors are derived from your base. Affects the φ bars and spiral illustration.</p>
+    <div class="scheme-grid" id="schemeGrid"></div>
+  </div>
+
+  <!-- ── SITE PREVIEW ───────────────────────────────────── -->
+  <div class="card">
+    <div class="card-title"><div class="card-title-dot"></div>Live Preview</div>
+    <div class="site-preview" id="sitePreview">
+      <div class="preview-header">
+        <span class="preview-logo" id="pvLogo">CH</span>
+        <div class="preview-nav">
+          <span>Work</span><span>Process</span><span>About</span>
+        </div>
+      </div>
+      <div class="preview-bars" id="pvBars"></div>
+      <div class="preview-hero">
+        <p class="preview-headline">Spaces that feel like <strong>they were always yours</strong></p>
+        <p class="preview-sub">Interior Design · Aspen · Roaring Fork Valley</p>
+        <p class="preview-collab" id="pvCollab">"Let's collaborate."</p>
+      </div>
+      <div class="preview-footer" id="pvFooter">
+        <span class="preview-footer-logo" id="pvFooterLogo">CH</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── 12-COLOR OVERRIDE ──────────────────────────────── -->
+  <div class="card" id="overrideCard">
+    <div class="card-title"><div class="card-title-dot"></div>Custom Color Override
+      <span style="font-size:0.60rem;font-weight:300;letter-spacing:0.06em;text-transform:none;color:var(--muted);margin-left:4px;">— up to 12 colors</span>
+    </div>
+
+    <label class="override-toggle" id="overrideToggle">
+      <div class="toggle-track" id="toggleTrack">
+        <div class="toggle-thumb"></div>
+      </div>
+      <span class="toggle-label">Use custom colors</span>
+      <span class="toggle-sublabel">Override the formula palette for the spiral &amp; bars</span>
+    </label>
+
+    <div id="overrideBody" style="display:none;">
+      <p style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-bottom:1rem;">
+        Set up to 12 colors that replace the formula-generated palette on the spiral and φ bars. The harmony scheme still controls the base hue relationships — these are your manual overrides on top.
+      </p>
+
+      <div class="override-actions">
+        <button class="btn-xs" id="ovFillFromPalette">Fill from current palette</button>
+        <button class="btn-xs" id="ovRandomize">Randomize all</button>
+        <button class="btn-xs" id="ovClear">Clear all</button>
+      </div>
+
+      <div class="override-grid" id="overrideGrid"></div>
+
+      <p style="font-size:0.65rem;color:var(--muted);font-weight:300;">
+        Empty slots fall back to the formula. Drag colors from your saved swatches or pick each one manually.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── APPLY ──────────────────────────────────────────── -->
+  <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
+    <a href="index.html" class="btn-action btn-outline" style="text-decoration:none;">Preview Homepage →</a>
+    <button class="btn-action btn-primary" id="applyBtn">Save &amp; Apply to Site ✓</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Saved — all pages updated</div>
+
+<script>
+(function(){
+  'use strict';
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+
+  /* ── OKLCH ──────────────────────────────────────────────── */
+  function oklch(L,C,H){
+    L=Math.max(0,Math.min(1,L));C=Math.max(0,C);
+    const hr=H*Math.PI/180,a=C*Math.cos(hr),b=C*Math.sin(hr);
+    const l_=L+0.3963377774*a+0.2158037573*b,m_=L-0.1055613458*a-0.0638541728*b,s_=L-0.0894841775*a-1.2914855480*b;
+    const lv=l_*l_*l_,mv=m_*m_*m_,sv=s_*s_*s_;
+    let R=4.0767416621*lv-3.3077115913*mv+0.2309699292*sv,G=-1.2684380046*lv+2.6097574011*mv-0.3413193965*sv,B=-0.0041960863*lv-0.7034186147*mv+1.7076147010*sv;
+    const gc=x=>x<=0.0031308?12.92*x:1.055*Math.pow(Math.max(0,x),1/2.4)-0.055;
+    const hx=x=>Math.round(Math.max(0,Math.min(1,gc(x)))*255).toString(16).padStart(2,'0');
+    return'#'+hx(R)+hx(G)+hx(B);
+  }
+  function hexToOklch(hex){
+    const p=s=>parseInt(s,16)/255;
+    let r=p(hex.slice(1,3)),g=p(hex.slice(3,5)),b=p(hex.slice(5,7));
+    const gd=x=>x<=0.04045?x/12.92:Math.pow((x+0.055)/1.055,2.4);
+    r=gd(r);g=gd(g);b=gd(b);
+    const l=0.4122214708*r+0.5363325363*g+0.0514459929*b,m=0.2119034982*r+0.6806995451*g+0.1073969566*b,s=0.0883024619*r+0.2817188376*g+0.6299787005*b;
+    const l_=Math.cbrt(l),m_=Math.cbrt(m),s_=Math.cbrt(s);
+    const a=1.9779984951*l_-2.4285922050*m_+0.4505937099*s_,bv=0.0259040371*l_+0.7827717662*m_-0.8086757660*s_,Lo=0.2104542553*l_+0.7936177850*m_-0.0040720468*s_;
+    return{L:Lo,C:Math.sqrt(a*a+bv*bv),H:((Math.atan2(bv,a)*180/Math.PI)+360)%360};
+  }
+  function randomHex(){return oklch(0.45+Math.random()*0.20,0.12+Math.random()*0.13,Math.random()*360);}
+  function buildFamily(H,maxC,anchorL){
+    const steps=[{L:0.965,cs:0.15},{L:0.890,cs:0.35},{L:0.790,cs:0.58},{L:0.690,cs:0.80},{L:0.590,cs:1.00},{L:0.480,cs:0.82},{L:0.370,cs:0.65},{L:0.255,cs:0.45},{L:0.145,cs:0.22}];
+    const sh=anchorL-0.590;
+    return steps.map(s=>oklch(Math.max(0.04,Math.min(0.97,s.L+sh)),maxC*s.cs,H));
+  }
+
+  /* ── Scheme definitions ──────────────────────────────────── */
+  const SCHEMES = [
+    {id:'comp',   label:'Complementary', desc:'180° — high contrast, bold'},
+    {id:'anal',   label:'Analogous',     desc:'30° — warm and cohesive'},
+    {id:'split',  label:'Split Comp.',   desc:'150° — softened contrast'},
+    {id:'triad',  label:'Triad',         desc:'120° — balanced variety'},
+    {id:'tetrad', label:'Tetrad',        desc:'90° — broadest range'},
+    {id:'mono',   label:'Monochromatic', desc:'Single hue — tonal depth'},
+    {id:'key',    label:'Key Color',     desc:'One dominant, rest recede'},
+  ];
+  const OFFSETS={mono:0,anal:30,comp:180,split:150,triad:120,tetrad:90,key:0};
+
+  /* ── State ───────────────────────────────────────────────── */
+  function loadSettings(){
+    try{const r=localStorage.getItem('gsp_settings');return r?JSON.parse(r):null;}
+    catch(e){return null;}
+  }
+  function loadSaved(){
+    try{const r=localStorage.getItem('gsp_saved_colors');return r?JSON.parse(r):[];}
+    catch(e){return[];}
+  }
+
+  const init     = loadSettings();
+  let baseHex    = init?.baseHex    || randomHex();
+  let schemeId   = init?.schemeId   || 'comp';
+  let analogStep = init?.analogStep || 0;
+  let saved      = loadSaved();
+
+  /* ── Render everything ───────────────────────────────────── */
+  function render(){
+    const{H:bH,C:bC,L:bL} = hexToOklch(baseHex);
+    const iterH  = (bH + analogStep*30) % 360;
+    const maxC   = Math.min(0.24, Math.max(bC*1.1, 0.13));
+    const off    = OFFSETS[schemeId] ?? 180;
+    const famDom = buildFamily(iterH, maxC, bL);
+    const famSec = buildFamily((iterH+off)%360, maxC, bL);
+    const baseTrue = famDom[4];
+
+    // CSS var + logo
+    document.documentElement.style.setProperty('--ch-base', baseTrue);
+    document.getElementById('ch-logo').style.color = baseTrue;
+
+    // Color picker + labels
+    document.getElementById('colorPicker').value = baseHex;
+    document.getElementById('colorSwatch').style.background = baseHex;
+    document.getElementById('colorHex').textContent = baseHex.toUpperCase();
+    const{H,C,L} = hexToOklch(baseHex);
+    document.getElementById('colorOklch').textContent =
+      `OKLCH H${Math.round(H)}°  L${Math.round(L*100)}  C${C.toFixed(2)}`;
+
+    // Palette chips — dominant family
+    const pp = document.getElementById('palettePreview');
+    pp.innerHTML = '';
+    const labels = ['100','200','300','400','500★','600','700','800','900'];
+    famDom.forEach((hex,i)=>{
+      const d=document.createElement('div');
+      d.className='preview-chip';
+      d.style.background=hex;
+      d.title=hex;
+      d.innerHTML=`<span class="chip-label">${labels[i]}</span>`;
+      pp.appendChild(d);
+    });
+
+    // Scheme buttons
+    renderSchemes(schemeId);
+
+    // Saved swatches
+    renderSaved();
+
+    // Site preview
+    renderPreview(baseTrue, famDom, famSec, iterH, maxC, bL);
+  }
+
+  function renderSchemes(active){
+    const g = document.getElementById('schemeGrid');
+    g.innerHTML = '';
+    SCHEMES.forEach(s=>{
+      const b = document.createElement('button');
+      b.className = 'scheme-btn' + (s.id===active?' active':'');
+      b.innerHTML = `${s.label}<span class="scheme-desc">${s.desc}</span>`;
+      b.addEventListener('click',()=>{ schemeId=s.id; render(); });
+      g.appendChild(b);
+    });
+  }
+
+  function renderSaved(){
+    const row = document.getElementById('savedRow');
+    // Keep add button
+    row.innerHTML = '';
+    saved.forEach((hex,i)=>{
+      const d = document.createElement('div');
+      d.className = 'saved-swatch' + (hex===baseHex?' active':'');
+      d.style.background = hex;
+      d.title = hex;
+      const x = document.createElement('div');
+      x.className = 'remove-x';
+      x.textContent = '×';
+      x.addEventListener('click', e=>{ e.stopPropagation(); saved.splice(i,1); saveSaved(); render(); });
+      d.appendChild(x);
+      d.addEventListener('click',()=>{ baseHex=hex; analogStep=0; render(); });
+      row.appendChild(d);
+    });
+    const addBtn = document.createElement('button');
+    addBtn.className = 'add-swatch-btn';
+    addBtn.textContent = '+';
+    addBtn.title = 'Save current color';
+    addBtn.addEventListener('click',()=>{
+      if(!saved.includes(baseHex) && saved.length < 10){
+        saved.push(baseHex); saveSaved(); render();
+      }
+    });
+    row.appendChild(addBtn);
+  }
+
+  function saveSaved(){
+    try{ localStorage.setItem('gsp_saved_colors', JSON.stringify(saved)); }catch(e){}
+  }
+
+  function renderPreview(baseTrue, famDom, famSec, iterH, maxC, bL){
+    // Logo color
+    document.getElementById('pvLogo').style.color = baseTrue;
+    document.getElementById('pvFooterLogo').style.color = baseTrue;
+    document.getElementById('pvCollab').style.color = baseTrue;
+    document.getElementById('pvFooter').style.background = '#0e0e0e';
+    document.getElementById('pvFooterLogo').style.color = baseTrue;
+
+    // φ bars preview
+    const barsEl = document.getElementById('pvBars');
+    barsEl.innerHTML = '';
+    const barColors = [famDom[4],famSec[4],famDom[6],famSec[2],famDom[7],famSec[5],famDom[3]];
+    const previewW  = barsEl.parentElement?.offsetWidth || 700;
+    let w = previewW * 0.45, sum = 0, ci = 0;
+    while(sum < previewW + 2 && w >= 0.5){
+      const cl = Math.min(w, previewW-sum+2);
+      const b  = document.createElement('div');
+      b.className = 'preview-bar';
+      b.style.width = cl+'px';
+      b.style.background = barColors[ci % barColors.length];
+      barsEl.appendChild(b);
+      sum+=cl; w=w/((1+Math.sqrt(5))/2); ci++;
+      if(sum>=previewW) break;
+    }
+  }
+
+  /* ── Save to localStorage ────────────────────────────────── */
+  function saveSettings(){
+    try{
+      localStorage.setItem('gsp_settings', JSON.stringify({baseHex, schemeId, analogStep, overrideActive, overrideColors}));
+    }catch(e){}
+  }
+
+  function showToast(){
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 2400);
+  }
+
+  /* ── Events ──────────────────────────────────────────────── */
+  document.getElementById('colorPicker').addEventListener('input', e=>{
+    baseHex = e.target.value; analogStep = 0; render();
+  });
+
+  document.getElementById('randomizeBtn').addEventListener('click',()=>{
+    baseHex = randomHex(); analogStep = 0; render();
+  });
+
+  document.getElementById('iterateBtn').addEventListener('click',()=>{
+    analogStep = (analogStep + 1) % 12; render();
+  });
+
+  document.getElementById('resetBtn').addEventListener('click',()=>{
+    baseHex = '#b5451b'; schemeId = 'comp'; analogStep = 0; render();
+  });
+
+  document.getElementById('applyBtn').addEventListener('click',()=>{
+    saveSettings(); showToast();
+  });
+
+
+  /* ── 12-Color Override ───────────────────────────────────── */
+  const MAX_OVERRIDE = 12;
+  let overrideActive = false;
+  let overrideColors = new Array(MAX_OVERRIDE).fill(null);
+
+  // Load from storage
+  try{
+    const ov = localStorage.getItem('gsp_override');
+    if(ov){
+      const parsed = JSON.parse(ov);
+      overrideActive = parsed.active || false;
+      overrideColors = parsed.colors || new Array(MAX_OVERRIDE).fill(null);
+    }
+  }catch(e){}
+
+  function saveOverride(){
+    try{ localStorage.setItem('gsp_override', JSON.stringify({active:overrideActive, colors:overrideColors})); }
+    catch(e){}
+  }
+
+  function buildOverrideGrid(){
+    const grid = document.getElementById('overrideGrid');
+    grid.innerHTML = '';
+    for(let i=0; i<MAX_OVERRIDE; i++){
+      const hex = overrideColors[i];
+      const slot = document.createElement('div');
+      slot.className = 'override-slot';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'override-pick-wrap';
+
+      const sw = document.createElement('div');
+      sw.className = 'override-swatch';
+      sw.style.background = hex || '#e8e5e0';
+      if(!hex) sw.style.opacity = '0.4';
+
+      const inp = document.createElement('input');
+      inp.type = 'color';
+      inp.value = hex || '#c8c0b8';
+      inp.addEventListener('input', e=>{
+        overrideColors[i] = e.target.value;
+        sw.style.background = e.target.value;
+        sw.style.opacity = '1';
+        hexEl.textContent = e.target.value.toUpperCase();
+        saveOverride(); render();
+      });
+
+      wrap.appendChild(sw); wrap.appendChild(inp);
+
+      const lbl = document.createElement('span');
+      lbl.className = 'override-label';
+      lbl.textContent = String(i+1).padStart(2,'0');
+
+      const hexEl = document.createElement('span');
+      hexEl.className = 'override-hex';
+      hexEl.textContent = hex ? hex.toUpperCase() : '—';
+
+      slot.appendChild(wrap); slot.appendChild(lbl); slot.appendChild(hexEl);
+      grid.appendChild(slot);
+    }
+  }
+
+  function syncOverrideUI(){
+    const track = document.getElementById('toggleTrack');
+    const body  = document.getElementById('overrideBody');
+    track.classList.toggle('on', overrideActive);
+    body.style.display = overrideActive ? '' : 'none';
+    buildOverrideGrid();
+  }
+
+  document.getElementById('overrideToggle').addEventListener('click', ()=>{
+    overrideActive = !overrideActive;
+    saveOverride(); syncOverrideUI(); render();
+  });
+
+  document.getElementById('ovFillFromPalette').addEventListener('click', ()=>{
+    const{H:bH,C:bC,L:bL} = hexToOklch(baseHex);
+    const iterH  = (bH + analogStep*30) % 360;
+    const maxC   = Math.min(0.24, Math.max(bC*1.1, 0.13));
+    const off    = OFFSETS[schemeId] ?? 180;
+    const famDom = buildFamily(iterH, maxC, bL);
+    const famSec = buildFamily((iterH+off)%360, maxC, bL);
+    const famAcc = buildFamily((iterH+120)%360, maxC, bL);
+    const fill   = [famDom[4],famSec[4],famDom[6],famSec[2],famDom[7],famSec[5],
+                    famAcc[4],famDom[3],famSec[6],famDom[5],famAcc[2],famSec[3]];
+    overrideColors = fill.slice(0, MAX_OVERRIDE);
+    saveOverride(); buildOverrideGrid(); render();
+  });
+
+  document.getElementById('ovRandomize').addEventListener('click', ()=>{
+    overrideColors = Array.from({length:MAX_OVERRIDE}, ()=>randomHex());
+    saveOverride(); buildOverrideGrid(); render();
+  });
+
+  document.getElementById('ovClear').addEventListener('click', ()=>{
+    overrideColors = new Array(MAX_OVERRIDE).fill(null);
+    saveOverride(); buildOverrideGrid(); render();
+  });
+
+  syncOverrideUI();
+
+  /* ── Boot ────────────────────────────────────────────────── */
+  render();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Work — Carolynn Heil Interiors</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,900;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font:         'Montserrat', sans-serif;
+  --black:        #0e0e0e;
+  --white:        #ffffff;
+  --off-white:    #f7f6f3;
+  --rule:         rgba(14,14,14,0.09);
+  --muted:        rgba(14,14,14,0.50);
+  --ch-base:      #b5451b;
+  --header-h:     68px;
+  --content-pad:  clamp(1.5rem, 5vw, 4.5rem);
+  --max-w:        1160px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+header {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--content-pad);
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.ch-logo {
+  font-family: var(--font);
+  font-size: clamp(1.4rem,2.8vw,1.85rem);
+  font-weight: 900;
+  color: var(--ch-base);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  transition: opacity 0.2s;
+}
+.ch-logo:hover { opacity: 0.72; }
+.site-title {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-size: clamp(0.70rem,1.4vw,0.85rem);
+  font-weight: 500; letter-spacing: 0.24em;
+  text-transform: uppercase; white-space: nowrap;
+}
+nav { display: flex; align-items: center; gap: clamp(1rem,2.5vw,2rem); }
+nav a {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--black);
+  text-decoration: none; opacity: 0.65; transition: opacity 0.18s;
+}
+nav a:hover { opacity: 1; }
+nav a.active { opacity: 1; color: var(--ch-base); }
+nav a.nav-contact {
+  border: 1.5px solid var(--black); padding: 8px 18px;
+  border-radius: 2px; opacity: 1; transition: all 0.18s;
+}
+nav a.nav-contact:hover { background: var(--black); color: var(--white); }
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--black); }
+@media (max-width: 640px) {
+  .site-title { display: none; }
+  nav { display: none; }
+  nav.open {
+    display: flex; flex-direction: column; align-items: flex-start;
+    position: absolute; top: var(--header-h); left: 0; right: 0;
+    background: var(--white); border-bottom: 1px solid var(--rule);
+    padding: 1.4rem var(--content-pad); gap: 1.1rem; z-index: 99;
+  }
+  .nav-toggle { display: flex; }
+}
+
+/* ── φ bars ───────────────────────────────────────────────────── */
+.phi-bars { width: 100%; height: 8px; display: flex; overflow: hidden; }
+.phi-bar  { height: 100%; width: 0; flex-shrink: 0; }
+
+/* ── Page intro ───────────────────────────────────────────────── */
+.page-intro {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: clamp(2.5rem,5vw,4rem) var(--content-pad) clamp(1.5rem,3vw,2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.intro-eyebrow {
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ch-base); display: block; margin-bottom: 0.7rem;
+}
+.intro-title {
+  font-size: clamp(1.8rem,4.5vw,3rem);
+  font-weight: 300; line-height: 1.1; letter-spacing: -0.01em;
+}
+.intro-title strong { font-weight: 900; }
+.intro-sub {
+  font-size: 0.85rem; font-weight: 300; color: var(--muted);
+  line-height: 1.7; max-width: 44ch; margin-top: 0.8rem;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────── */
+.filter-bar {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad) 2rem;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: var(--font);
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 2px;
+  border: 1.5px solid var(--rule);
+  background: transparent; color: var(--muted);
+  cursor: pointer; transition: all 0.18s;
+}
+.filter-btn:hover { border-color: var(--black); color: var(--black); }
+.filter-btn.active { background: var(--ch-base); border-color: var(--ch-base); color: var(--white); }
+
+/* ── Portfolio grid ───────────────────────────────────────────── */
+.portfolio-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad) clamp(3rem,6vw,5rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(1rem,2vw,1.5rem);
+}
+
+@media (max-width: 900px)  { .portfolio-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 540px)  { .portfolio-grid { grid-template-columns: 1fr; } }
+
+/* ── Project card ─────────────────────────────────────────────── */
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: var(--black);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  background: var(--white);
+  opacity: 1;
+  transform: translateY(0);
+  min-height: 200px;
+}
+/* Hero image */
+.card-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+  background: var(--off-white);
+}
+.card-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+.project-card:hover .card-image img { transform: scale(1.04); }
+
+/* Hover overlay */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14,14,14,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.30s;
+}
+.project-card:hover .card-overlay { opacity: 1; }
+.overlay-cta {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.70);
+  padding: 10px 22px;
+  border-radius: 2px;
+}
+
+/* Card body */
+.card-body {
+  padding: 1.1rem 1.2rem 1.3rem;
+  border-top: 2px solid var(--ch-base);
+}
+.card-category {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ch-base);
+  display: block;
+  margin-bottom: 4px;
+}
+.card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 3px;
+}
+.card-location {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* Featured card — spans 2 cols on desktop */
+/* grid grows naturally as projects are added */
+
+/* ── Collab band ──────────────────────────────────────────────── */
+.collab-band {
+  background: var(--ch-base);
+  padding: clamp(2.5rem,5vw,4rem) var(--content-pad);
+  text-align: center;
+}
+.collab-text {
+  font-size: clamp(1.4rem,3.5vw,2.4rem);
+  font-weight: 300; font-style: italic;
+  color: var(--white); margin-bottom: 1.4rem;
+}
+.collab-link {
+  display: inline-block;
+  font-size: 0.70rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ch-base); background: var(--white);
+  padding: 12px 28px; border-radius: 2px;
+  text-decoration: none; transition: opacity 0.18s;
+}
+.collab-link:hover { opacity: 0.85; }
+
+/* ── Footer ───────────────────────────────────────────────────── */
+footer {
+  background: var(--black); color: var(--white);
+  padding: clamp(2.5rem,5vw,4rem) var(--content-pad) clamp(1.5rem,3vw,2rem);
+}
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1.5rem;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.footer-logo {
+  font-weight: 900; font-size: 1.4rem; letter-spacing: -0.03em;
+  color: var(--ch-base); text-decoration: none;
+}
+.footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+.footer-links a {
+  font-size: 0.72rem; font-weight: 300;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.18s;
+}
+.footer-links a:hover { color: var(--ch-base); }
+.footer-bottom {
+  max-width: var(--max-w); margin: 1.8rem auto 0;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+}
+.footer-copy { font-size: 0.65rem; font-weight: 300; color: rgba(255,255,255,0.28); letter-spacing: 0.06em; }
+.footer-location { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
+  <span class="site-title">Carolynn Heil Interiors</span>
+  <nav id="main-nav">
+    <a href="work.html" class="active">Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="about.html">About</a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="phi-bars" id="phi-bars" aria-hidden="true"></div>
+
+<div class="page-intro">
+  <div>
+    <span class="intro-eyebrow">Selected Projects</span>
+    <h1 class="intro-title">The <strong>work</strong></h1>
+    <p class="intro-sub">Every project a collaboration. Every room a reflection of the life lived inside it.</p>
+  </div>
+</div>
+
+
+<div class="portfolio-grid" id="portfolio-grid">
+
+  <!-- FEATURED — Hallam Residence -->
+  <a href="project-aspen-residence.html"
+     class="project-card"
+     data-categories="full-service aspen">
+    <div class="card-image">
+      <img src="hallam-residence/HalWilliams2017-0820.jpg"
+           alt="Hallam Residence — Living Room"/>
+      <div class="card-overlay"><span class="overlay-cta">View Project</span></div>
+    </div>
+    <div class="card-body">
+      <span class="card-category">Full-Service Design · 2017</span>
+      <p class="card-title">Hallam Residence</p>
+      <p class="card-location">Aspen, Colorado</p>
+    </div>
+  </a>
+
+</div>

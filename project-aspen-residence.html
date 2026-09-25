@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hallam Residence — Carolynn Heil Interiors</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,900;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   PROJECT PAGE — Hallam Residence
+   Carolynn Heil Interiors
+═══════════════════════════════════════════════════════════════ */
+:root {
+  --font:         'Montserrat', sans-serif;
+  --black:        #0e0e0e;
+  --white:        #ffffff;
+  --off-white:    #f7f6f3;
+  --rule:         rgba(14,14,14,0.09);
+  --muted:        rgba(14,14,14,0.50);
+  --ch-base:      #b5451b;   /* overridden by JS */
+  --header-h:     68px;
+  --content-pad:  clamp(1.5rem, 5vw, 4.5rem);
+  --max-w:        1160px;
+  --carousel-h:   clamp(320px, 62vh, 720px);
+  --thumb-h:      80px;
+  --thumb-gap:    6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+header {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--content-pad);
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.ch-logo {
+  font-family: var(--font);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  font-weight: 900;
+  color: var(--ch-base);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.ch-logo:hover { opacity: 0.72; }
+
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(0.70rem, 1.4vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+nav a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.18s;
+}
+nav a:hover { opacity: 1; }
+nav a.nav-back {
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ch-base);
+}
+nav a.nav-contact {
+  border: 1.5px solid var(--black);
+  padding: 8px 18px;
+  border-radius: 2px;
+  opacity: 1;
+  transition: all 0.18s;
+}
+nav a.nav-contact:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--black); }
+
+@media (max-width: 640px) {
+  .site-title { display: none; }
+  nav { display: none; }
+  nav.open {
+    display: flex; flex-direction: column; align-items: flex-start;
+    position: absolute; top: var(--header-h); left: 0; right: 0;
+    background: var(--white); border-bottom: 1px solid var(--rule);
+    padding: 1.4rem var(--content-pad); gap: 1.1rem; z-index: 99;
+  }
+  .nav-toggle { display: flex; }
+}
+
+/* ── φ bars — thin, decorative ───────────────────────────────── */
+.phi-bars {
+  width: 100%;
+  height: 8px;
+  display: flex;
+  overflow: hidden;
+}
+.phi-bar { height: 100%; width: 0; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   PROJECT INTRO
+═══════════════════════════════════════════════════════════════ */
+.project-intro {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem) var(--content-pad) clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-meta {}
+
+.project-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ch-base);
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.project-title {
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+.project-title strong { font-weight: 900; }
+
+.project-location {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+}
+
+.project-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-shrink: 0;
+}
+.stat {}
+.stat-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 3px;
+}
+.stat-value {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAROUSEL
+═══════════════════════════════════════════════════════════════ */
+.carousel-section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad) clamp(2rem, 4vw, 3.5rem);
+}
+
+/* Main stage */
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  height: var(--carousel-h);
+  overflow: hidden;
+  border-radius: 4px;
+  background: #111;
+  cursor: pointer;
+  margin-bottom: var(--thumb-gap);
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.65s ease;
+  will-change: opacity;
+}
+.carousel-slide.active { opacity: 1; z-index: 2; }
+.carousel-slide.prev   { opacity: 0; z-index: 1; }
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Caption overlay */
+.slide-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2rem 1.8rem 1.4rem;
+  background: linear-gradient(to top, rgba(10,10,10,0.72) 0%, transparent 100%);
+  z-index: 3;
+  transform: translateY(4px);
+  opacity: 0;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.carousel-slide.active .slide-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+.caption-room {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.60);
+  display: block;
+  margin-bottom: 3px;
+}
+.caption-desc {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.90);
+  line-height: 1.4;
+}
+
+/* Prev / Next arrows */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.20);
+  color: var(--white);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.carousel-btn:hover { background: rgba(255,255,255,0.22); }
+.carousel-btn.prev-btn { left: 1.2rem; }
+.carousel-btn.next-btn { right: 1.2rem; }
+
+/* Progress bar */
+.carousel-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: var(--ch-base);
+  z-index: 10;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Counter */
+.carousel-counter {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.4rem;
+  z-index: 10;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.65);
+  background: rgba(0,0,0,0.30);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Pause indicator */
+.carousel-paused-badge {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.4rem;
+  z-index: 10;
+  font-size: 0.60rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.50);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.carousel-stage.paused .carousel-paused-badge { opacity: 1; }
+
+/* ── Thumbnail strip ─────────────────────────────────────────── */
+.thumb-strip {
+  display: flex;
+  gap: var(--thumb-gap);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+  scroll-behavior: smooth;
+}
+.thumb-strip::-webkit-scrollbar { display: none; }
+
+.thumb {
+  flex-shrink: 0;
+  width: calc(var(--thumb-h) * 1.5);
+  height: var(--thumb-h);
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.55;
+  transition: opacity 0.22s, transform 0.22s;
+  border: 2px solid transparent;
+}
+.thumb:hover { opacity: 0.80; transform: translateY(-2px); }
+.thumb.active {
+  opacity: 1;
+  border-color: var(--ch-base);
+  transform: translateY(-2px);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+
+/* Thumb number badge */
+.thumb-num {
+  position: absolute;
+  bottom: 4px; right: 5px;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.80);
+  background: rgba(0,0,0,0.45);
+  padding: 1px 5px;
+  border-radius: 10px;
+  letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROJECT DESCRIPTION
+═══════════════════════════════════════════════════════════════ */
+.project-desc {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad) clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.desc-left {}
+
+.desc-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ch-base);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.desc-headline {
+  font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.4rem;
+}
+.desc-headline strong { font-weight: 600; }
+
+.desc-body {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.82;
+  color: rgba(14,14,14,0.70);
+}
+.desc-body p + p { margin-top: 1rem; }
+
+.desc-right {}
+
+.desc-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.spec-item {
+  border-top: 1.5px solid var(--black);
+  padding-top: 0.9rem;
+}
+.spec-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+.spec-value {
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.desc-quote {
+  border-left: 3px solid var(--ch-base);
+  padding-left: 1.2rem;
+  margin-top: 1.5rem;
+}
+.quote-text {
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--black);
+  margin-bottom: 0.6rem;
+}
+.quote-attr {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .project-desc { grid-template-columns: 1fr; gap: 2rem; }
+  .project-stats { gap: 1.5rem; }
+}
+
+/* ── Next project teaser ─────────────────────────────────────── */
+.next-project {
+  background: var(--off-white);
+  padding: clamp(2rem, 4vw, 3.5rem) var(--content-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.next-label {
+  font-size: 0.60rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.next-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.next-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border: 1.5px solid var(--black);
+  padding: 10px 22px;
+  border-radius: 2px;
+  transition: all 0.18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.next-link:hover { background: var(--black); color: var(--white); }
+
+/* ── Footer ──────────────────────────────────────────────────── */
+footer {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(2.5rem,5vw,4rem) var(--content-pad) clamp(1.5rem,3vw,2rem);
+}
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.footer-logo {
+  font-family: var(--font);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--ch-base);
+  text-decoration: none;
+}
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.footer-links a:hover { color: var(--ch-base); }
+.footer-bottom {
+  max-width: var(--max-w);
+  margin: 1.8rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.footer-copy {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.06em;
+}
+.footer-location {
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ════════════════════════════════════════════════ -->
+<header>
+  <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
+  <span class="site-title">Carolynn Heil Interiors</span>
+  <nav id="main-nav">
+    <a href="work.html" class="nav-back">← Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="about.html">About</a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ═══ THIN φ BARS ═══════════════════════════════════════════ -->
+<div class="phi-bars" id="phi-bars" aria-hidden="true"></div>
+
+<!-- ═══ PROJECT INTRO ═════════════════════════════════════════ -->
+<div class="project-intro">
+  <div class="project-meta">
+    <span class="project-eyebrow">Full-Service Interior Design</span>
+    <h1 class="project-title">Hallam <strong>Residence</strong></h1>
+    <p class="project-location">Aspen, Colorado · Roaring Fork Valley</p>
+  </div>
+  <div class="project-stats">
+    <div class="stat">
+      <span class="stat-label">Year</span>
+      <span class="stat-value">2017</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Scope</span>
+      <span class="stat-value">Full Residence</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Photography</span>
+      <span class="stat-value">Hal Williams</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CAROUSEL ══════════════════════════════════════════════ -->
+<div class="carousel-section">
+
+  <div class="carousel-stage" id="carousel-stage">
+    <!-- Slides injected by JS -->
+    <button class="carousel-btn prev-btn" id="prev-btn" aria-label="Previous">&#8592;</button>
+    <button class="carousel-btn next-btn" id="next-btn" aria-label="Next">&#8594;</button>
+    <div class="carousel-progress" id="carousel-progress"></div>
+    <div class="carousel-counter" id="carousel-counter">1 / 14</div>
+    <div class="carousel-paused-badge">Paused</div>
+  </div>
+
+  <div class="thumb-strip" id="thumb-strip">
+    <!-- Thumbnails injected by JS -->
+  </div>
+
+</div>
+
+<!-- ═══ PROJECT DESCRIPTION ═══════════════════════════════════ -->
+<div class="project-desc">
+  <div class="desc-left">
+    <span class="desc-eyebrow">About the project</span>
+    <h2 class="desc-headline">A modern mountain home where <strong>light and luxury</strong> meet</h2>
+    <div class="desc-body">
+      <p>This Aspen residence called for a refined modern aesthetic that could hold its own against the drama of the surrounding landscape — Calacatta marble fireplace walls soaring to the ceiling, velvet and chrome furnishings that feel both collected and considered.</p>
+      <p>Every material decision was made with the Roaring Fork Valley in mind. The palette draws from the mountain environment — cool silvers, slate blues, and warm creams that shift with the quality of alpine light throughout the day.</p>
+      <p>The lower-level entertainment lounge presented its own story entirely: a richer, moodier register with aged brass, antiqued mirrors, and a dramatic tiered chandelier that anchors the space in a different kind of luxury — the kind that comes out after dark.</p>
+    </div>
+  </div>
+  <div class="desc-right">
+    <div class="desc-specs">
+      <div class="spec-item">
+        <span class="spec-label">Location</span>
+        <span class="spec-value">Aspen, Colorado</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Style</span>
+        <span class="spec-value">Modern Mountain</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Spaces</span>
+        <span class="spec-value">Living · Bedroom · Bath · Entertainment</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Services</span>
+        <span class="spec-value">Full Design &amp; Installation</span>
+      </div>
+    </div>
+    <div class="desc-quote">
+      <p class="quote-text">"The result is a home that feels unmistakably like the mountains — and unmistakably like you."</p>
+      <span class="quote-attr">Carolynn Heil · Design Director</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NEXT PROJECT ══════════════════════════════════════════ -->
+<div class="next-project">
+  <div>
+    <span class="next-label">Next Project</span>
+    <p class="next-title">Snowmass Village Retreat</p>
+  </div>
+  <a href="#" class="next-link">View Project →</a>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">CH</a>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Carolynn Heil Interiors. All rights reserved.</span>
+    <span class="footer-location">Aspen · Roaring Fork Valley · Colorado</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+
+  /* ── OKLCH ──────────────────────────────────────────────── */
+  function oklch(L,C,H){
+    L=Math.max(0,Math.min(1,L));C=Math.max(0,C);
+    const hr=H*Math.PI/180,a=C*Math.cos(hr),b=C*Math.sin(hr);
+    const l_=L+0.3963377774*a+0.2158037573*b;
+    const m_=L-0.1055613458*a-0.0638541728*b;
+    const s_=L-0.0894841775*a-1.2914855480*b;
+    const lv=l_*l_*l_,mv=m_*m_*m_,sv=s_*s_*s_;
+    let R=4.0767416621*lv-3.3077115913*mv+0.2309699292*sv;
+    let G=-1.2684380046*lv+2.6097574011*mv-0.3413193965*sv;
+    let B=-0.0041960863*lv-0.7034186147*mv+1.7076147010*sv;
+    const gc=x=>x<=0.0031308?12.92*x:1.055*Math.pow(Math.max(0,x),1/2.4)-0.055;
+    const hx=x=>Math.round(Math.max(0,Math.min(1,gc(x)))*255).toString(16).padStart(2,'0');
+    return'#'+hx(R)+hx(G)+hx(B);
+  }
+  function hexToOklch(hex){
+    const p=s=>parseInt(s,16)/255;
+    let r=p(hex.slice(1,3)),g=p(hex.slice(3,5)),b=p(hex.slice(5,7));
+    const gd=x=>x<=0.04045?x/12.92:Math.pow((x+0.055)/1.055,2.4);
+    r=gd(r);g=gd(g);b=gd(b);
+    const l=0.4122214708*r+0.5363325363*g+0.0514459929*b;
+    const m=0.2119034982*r+0.6806995451*g+0.1073969566*b;
+    const s=0.0883024619*r+0.2817188376*g+0.6299787005*b;
+    const l_=Math.cbrt(l),m_=Math.cbrt(m),s_=Math.cbrt(s);
+    const a=1.9779984951*l_-2.4285922050*m_+0.4505937099*s_;
+    const bv=0.0259040371*l_+0.7827717662*m_-0.8086757660*s_;
+    const Lo=0.2104542553*l_+0.7936177850*m_-0.0040720468*s_;
+    return{L:Lo,C:Math.sqrt(a*a+bv*bv),H:((Math.atan2(bv,a)*180/Math.PI)+360)%360};
+  }
+  function randomHex(){return oklch(0.45+Math.random()*0.20,0.12+Math.random()*0.12,Math.random()*360);}
+  function buildFamily(H,maxC,anchorL){
+    const steps=[
+      {L:0.965,cs:0.15},{L:0.890,cs:0.35},{L:0.790,cs:0.58},
+      {L:0.690,cs:0.80},{L:0.590,cs:1.00},{L:0.480,cs:0.82},
+      {L:0.370,cs:0.65},{L:0.255,cs:0.45},{L:0.145,cs:0.22},
+    ];
+    const sh=anchorL-0.590;
+    return steps.map(s=>oklch(Math.max(0.04,Math.min(0.97,s.L+sh)),maxC*s.cs,H));
+  }
+
+  /* ── Palette ─────────────────────────────────────────────── */
+  const saved=(()=>{try{const r=localStorage.getItem('gsp_settings');return r?JSON.parse(r):null;}catch(e){return null;}})();
+  const baseHex=saved?.baseHex||randomHex();
+  const schemeId=saved?.schemeId||'comp';
+  const analogStep=saved?.analogStep||0;
+  const{H:bH,C:bC,L:bL}=hexToOklch(baseHex);
+  const iterH=(bH+analogStep*30)%360;
+  const maxC=Math.min(0.24,Math.max(bC*1.1,0.13));
+  const OFFSETS={mono:0,anal:30,comp:180,split:150,triad:120,tetrad:90,key:0};
+  const famDom=buildFamily(iterH,maxC,bL);
+  const famSec=buildFamily((iterH+(OFFSETS[schemeId]??180))%360,maxC,bL);
+
+  const baseTrue=famDom[4];
+  document.documentElement.style.setProperty('--ch-base',baseTrue);
+  document.getElementById('ch-logo').style.color=baseTrue;
+
+  /* ── Thin φ bars ─────────────────────────────────────────── */
+  const BAR_COLORS=[famDom[4],famSec[4],famDom[6],famSec[2],famDom[7],famSec[5],famDom[3]];
+  (function buildBars(){
+    const container=document.getElementById('phi-bars');
+    const vw=window.innerWidth;
+    const firstW=vw*0.45;
+    let w=firstW,sum=0;
+    let ci=0;
+    while(sum<vw+2&&w>=0.5){
+      const clipped=Math.min(w,vw-sum+2);
+      const bar=document.createElement('div');
+      bar.className='phi-bar';
+      bar.style.background=BAR_COLORS[ci%BAR_COLORS.length];
+      bar.style.width=clipped+'px';
+      container.appendChild(bar);
+      sum+=clipped;w=w/PHI;ci++;
+      if(sum>=vw)break;
+    }
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     CAROUSEL
+  ═══════════════════════════════════════════════════════════ */
+
+  // NOTE FOR DEPLOYMENT: update image paths to match your
+  // folder structure. Currently set to relative paths.
+  // ── 18 web-ready images — curated storytelling sequence ────
+  // To remove a photo: delete its { } block and adjust N below
+  const IMAGES = [
+    { src:'hallam-residence/HalWilliams2017-0820.jpg',  room:'Living Room',              desc:'Calacatta marble fireplace wall with linear gas insert' },
+    { src:'hallam-residence/Chairs.jpg',                room:'Living Room — Detail',     desc:'Velvet tub chairs with acrylic side table and marble coffee table' },
+    { src:'hallam-residence/Living.jpg',                room:'Living Room',              desc:'Full fireplace view with velvet seating arrangement' },
+    { src:'hallam-residence/HalWilliams2017-0780.jpg',  room:'Living Room',              desc:'Sectional sofa with velvet accent chairs and Mongolian fur pillows' },
+    { src:'hallam-residence/HalWilliams2017-0640.jpg',  room:'Primary Bedroom',          desc:'Upholstered bed with embroidered pillows and linen campaign dressers' },
+    { src:'hallam-residence/HalWilliams2017-0677.jpg',  room:'Primary Bedroom',          desc:'Mountain views from the vaulted bedroom suite with balcony access' },
+    { src:'hallam-residence/HalWilliams2017-0689.jpg',  room:'Primary Bath',             desc:'Freestanding soaking tub under a triangular skylight window — all marble' },
+    { src:'hallam-residence/HalWilliams2017-0721.jpg',  room:'Primary Bath — Vanity',    desc:'Floating vanity with Calacatta marble countertop and polished chrome fixtures' },
+    { src:'hallam-residence/HalWilliams2017-0724.jpg',  room:'Guest Bedroom',            desc:'Layered blue and grey palette with triangular dormer window and upholstered bench' },
+    { src:'hallam-residence/HalWilliams2017-0741_2.jpg',room:'Guest Bedroom Suite',      desc:'Guest bedroom connecting to ensuite bath — warm oak tones and blue textiles' },
+    { src:'hallam-residence/HalWilliams2017-0748.jpg',  room:'Guest Bath',               desc:'Walk-in shower with geometric tile floor and backlit mirror' },
+    { src:'hallam-residence/HalWilliams2017-0759.jpg',  room:'Bedroom — Styling',        desc:'Dresser vignette with white vases, grey throw, and Mongolian fur accent' },
+    { src:'hallam-residence/Bunk.jpg',                  room:'Bunk Room',                desc:'Custom white oak bunk room sleeping four — plaid pillows and a patchwork runner' },
+    { src:'hallam-residence/HalWilliams2017-0894.jpg',  room:'Bunk Room',                desc:'Second view of the bunk suite — warm lighting and campaign dresser' },
+    { src:'hallam-residence/HalWilliams2017-0877.jpg',  room:'Bunk Room — Detail',       desc:'Sunburst mirror and gold desk chair — personality in every corner' },
+    { src:'hallam-residence/HalWilliams2017-0855.jpg',  room:'Entertainment Lounge',     desc:'Tiered crystal chandelier anchors the lower-level lounge with antiqued mirror cabinetry' },
+    { src:'hallam-residence/HalWilliams2017-0857.jpg',  room:'Entertainment Lounge',     desc:'Full lounge view — wet bar, brass coffee tables, leather chaise' },
+    { src:'hallam-residence/HalWilliams2017-0865.jpg',  room:'Entertainment — Detail',   desc:'Leather seating with Mongolian fur pillows, hammered silver and a marble-topped tray' },
+  ];
+
+  const stage     = document.getElementById('carousel-stage');
+  const strip     = document.getElementById('thumb-strip');
+  const progress  = document.getElementById('carousel-progress');
+  const counter   = document.getElementById('carousel-counter');
+  const N         = IMAGES.length;
+  let   current   = 0;
+  let   paused    = false;
+  let   autoTimer = null;
+  let   progTimer = null;
+  let   progStart = null;
+  const AUTO_MS   = 5000;
+
+  /* ── Build slides ────────────────────────────────────────── */
+  const slideEls = [];
+  IMAGES.forEach((img,i)=>{
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide' + (i===0?' active':'');
+    slide.innerHTML = `
+      <img src="${img.src}" alt="${img.room}" loading="${i<3?'eager':'lazy'}"/>
+      <div class="slide-caption">
+        <span class="caption-room">${img.room}</span>
+        <span class="caption-desc">${img.desc}</span>
+      </div>`;
+    stage.insertBefore(slide, stage.querySelector('.carousel-btn'));
+    slideEls.push(slide);
+  });
+
+  /* ── Build thumbnails ────────────────────────────────────── */
+  const thumbEls = [];
+  IMAGES.forEach((img,i)=>{
+    const th = document.createElement('div');
+    th.className = 'thumb' + (i===0?' active':'');
+    th.innerHTML = `<img src="${img.src}" alt="${img.room}" loading="lazy"/><span class="thumb-num">${i+1}</span>`;
+    th.addEventListener('click',()=>goTo(i, true));
+    strip.appendChild(th);
+    thumbEls.push(th);
+  });
+
+  /* ── Go to slide ─────────────────────────────────────────── */
+  function goTo(idx, manual=false){
+    if(idx === current) return;
+    slideEls[current].classList.remove('active');
+    slideEls[current].classList.add('prev');
+    thumbEls[current].classList.remove('active');
+    setTimeout(()=>slideEls[current<N?current:0].classList.remove('prev'),700);
+
+    current = ((idx % N) + N) % N;
+    slideEls[current].classList.add('active');
+    thumbEls[current].classList.add('active');
+    counter.textContent = `${current+1} / ${N}`;
+
+    // Scroll thumbnail into view
+    thumbEls[current].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+
+    if(manual){ paused=false; }
+    resetProgress();
+  }
+
+  function next(){ goTo(current+1); }
+  function prev(){ goTo(current-1); }
+
+  /* ── Progress bar ────────────────────────────────────────── */
+  function resetProgress(){
+    clearTimeout(autoTimer);
+    cancelAnimationFrame(progTimer);
+    progress.style.transition='none';
+    progress.style.width='0%';
+    if(paused) return;
+    progStart = performance.now();
+    function animProg(now){
+      const elapsed = now - progStart;
+      const pct = Math.min((elapsed/AUTO_MS)*100, 100);
+      progress.style.width = pct+'%';
+      if(pct<100){
+        progTimer = requestAnimationFrame(animProg);
+      } else {
+        next();
+      }
+    }
+    progTimer = requestAnimationFrame(animProg);
+  }
+
+  /* ── Controls ────────────────────────────────────────────── */
+  document.getElementById('prev-btn').addEventListener('click', e=>{
+    e.stopPropagation(); prev();
+  });
+  document.getElementById('next-btn').addEventListener('click', e=>{
+    e.stopPropagation(); next();
+  });
+
+  // Click stage to pause/resume
+  stage.addEventListener('click',()=>{
+    paused = !paused;
+    stage.classList.toggle('paused', paused);
+    if(!paused) resetProgress();
+    else {
+      cancelAnimationFrame(progTimer);
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight') next();
+    if(e.key==='ArrowLeft')  prev();
+    if(e.key===' '){ paused=!paused; stage.classList.toggle('paused',paused); if(!paused)resetProgress(); else cancelAnimationFrame(progTimer); }
+  });
+
+  // Touch swipe
+  let touchX = null;
+  stage.addEventListener('touchstart', e=>{ touchX=e.touches[0].clientX; },{passive:true});
+  stage.addEventListener('touchend', e=>{
+    if(touchX===null)return;
+    const dx=e.changedTouches[0].clientX - touchX;
+    if(Math.abs(dx)>40){ dx<0?next():prev(); }
+    touchX=null;
+  });
+
+  /* ── Boot ─────────────────────────────────────────────────── */
+  counter.textContent = `1 / ${N}`;
+  counter.style.setProperty('--ch-base', baseTrue);
+  resetProgress();
+
+  /* ── Mobile nav ───────────────────────────────────────────── */
+  document.getElementById('nav-toggle')?.addEventListener('click',()=>{
+    document.getElementById('main-nav')?.classList.toggle('open');
+  });
+
+})();
+</script>
+</body>
+</html>

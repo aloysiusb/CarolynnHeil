@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Carolynn Heil Interiors — Aspen · Roaring Fork Valley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,900;1,300&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   CAROLYNN HEIL INTERIORS — Homepage
+   White · Black Montserrat · φ bars · Black footer
+   ── Edit :root to restyle ────────────────────────────────────
+═══════════════════════════════════════════════════════════════ */
+:root {
+  --ch-base:       #c0392b;   /* overridden by JS from palette  */
+  --ch-comp:       #1a7a8a;   /* overridden by JS               */
+  --ch-black:      #0e0e0e;
+  --ch-white:      #ffffff;
+  --ch-rule:       rgba(0,0,0,0.09);
+  --ch-muted:      rgba(14,14,14,0.52);
+
+  --font-logo:     'Montserrat', sans-serif;
+  --font-body:     'Montserrat', sans-serif;
+
+  --header-h:      68px;
+  --bar-h:         52px;      /* height of the φ bar band        */
+  --content-pad:   clamp(1.5rem, 5vw, 4.5rem);
+  --max-w:         1160px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ch-white);
+  color: var(--ch-black);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER — exactly as the image
+═══════════════════════════════════════════════════════════════ */
+header {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--content-pad);
+  background: var(--ch-white);
+  position: relative;
+  z-index: 100;
+}
+
+.ch-logo {
+  font-family: var(--font-logo);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  color: var(--ch-base);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.ch-logo:hover { opacity: 0.75; }
+
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ch-black);
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+nav a {
+  font-family: var(--font-body);
+  font-size: 0.80rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ch-black);
+  text-decoration: none;
+  opacity: 0.70;
+  transition: opacity 0.18s;
+}
+nav a:hover { opacity: 1; }
+nav a.nav-contact {
+  opacity: 1;
+  border: 1.5px solid var(--ch-black);
+  padding: 9px 20px;
+  border-radius: 2px;
+  transition: background 0.18s, color 0.18s;
+}
+nav a.nav-contact:hover {
+  background: var(--ch-black);
+  color: var(--ch-white);
+}
+
+/* Mobile */
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--ch-black); }
+
+@media (max-width: 640px) {
+  .site-title { display: none; }
+  nav { display: none; }
+  nav.open {
+    display: flex; flex-direction: column; align-items: flex-start;
+    position: absolute; top: var(--header-h); left: 0; right: 0;
+    background: var(--ch-white); border-bottom: 1px solid var(--ch-rule);
+    padding: 1.4rem var(--content-pad); gap: 1.1rem; z-index: 99;
+  }
+  .nav-toggle { display: flex; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   φ BAR SECTION
+   Two bars side by side, same height, flush under header.
+   Bar 1 = 50% of viewport width (dominant color)
+   Bar 2 = 50/φ ≈ 30.9% (complement color)
+   White space after = the φ negative space
+   Both animate from 0 → target width on load, staggered.
+═══════════════════════════════════════════════════════════════ */
+.phi-bar-section {
+  width: 100%;
+  height: var(--bar-h);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  /* bars fill to screen edge, last one clips */
+}
+
+.phi-bar {
+  height: 100%;
+  width: 0;          /* JS animates to target px width */
+  flex-shrink: 0;
+  display: block;
+  transition: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════════════════════════════ */
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+  padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.hero.visible { opacity: 1; transform: translateY(0); }
+
+.hero-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ch-base);
+  margin-bottom: 1.1rem;
+  display: block;
+}
+
+.hero-headline {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+  color: var(--ch-black);
+  margin-bottom: 1.4rem;
+}
+.hero-headline strong {
+  font-weight: 600;
+  display: block;
+}
+
+.hero-body {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.80;
+  color: var(--ch-muted);
+  max-width: 40ch;
+  margin-bottom: 2rem;
+}
+
+.hero-location {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ch-muted);
+  margin-bottom: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero-location::before {
+  content: '';
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--ch-muted);
+}
+
+.hero-collab {
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ch-base);
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 24px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: inline-block;
+}
+.btn-dark {
+  background: var(--ch-black);
+  color: var(--ch-white);
+  border: 1.5px solid var(--ch-black);
+}
+.btn-dark:hover { background: var(--ch-base); border-color: var(--ch-base); }
+.btn-outline {
+  background: transparent;
+  color: var(--ch-black);
+  border: 1.5px solid rgba(14,14,14,0.22);
+}
+.btn-outline:hover { border-color: var(--ch-black); }
+
+/* ── Hero right — animated shapes ────────────────────────── */
+.hero-shapes {
+  width: 100%;
+  height: clamp(280px, 36vw, 400px);
+  position: relative;
+  overflow: visible;
+}
+
+/* ── Rule ─────────────────────────────────────────────────── */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: var(--ch-rule);
+  margin: 0;
+}
+
+/* ── Services ─────────────────────────────────────────────── */
+.services {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease 0.1s, transform 0.9s ease 0.1s;
+}
+.services.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Collaborate band ─────────────────────────────────────── */
+.collab-band {
+  background: var(--ch-base);
+  padding: clamp(2.5rem, 5vw, 4rem) var(--content-pad);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease 0.15s, transform 0.9s ease 0.15s;
+}
+.collab-band.visible { opacity: 1; transform: translateY(0); }
+
+.collab-saying {
+  font-family: var(--font-body);
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ch-white);
+  letter-spacing: 0.01em;
+  margin-bottom: 1.6rem;
+}
+.collab-saying em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.collab-btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ch-base);
+  background: var(--ch-white);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.collab-btn:hover { opacity: 0.88; }
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+@media (max-width: 480px) {
+  .hero-swatches { height: 180px; gap: 4px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER — black bg, white type
+═══════════════════════════════════════════════════════════════ */
+footer {
+  background: var(--ch-black);
+  color: var(--ch-white);
+  padding: clamp(3rem,6vw,5rem) var(--content-pad) clamp(1.5rem,3vw,2.5rem);
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.footer-logo {
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ch-base);
+  display: block;
+  margin-bottom: 0.9rem;
+  text-decoration: none;
+}
+
+.footer-name {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.footer-tagline {
+  font-size: 0.82rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.40);
+}
+
+.footer-col-title {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a {
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.footer-links a:hover { color: var(--ch-base); }
+
+.footer-bottom {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-size: 0.68rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.06em;
+}
+
+.footer-location {
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+@media (max-width: 640px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ════════════════════════════════════════════════ -->
+<header>
+  <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
+  <span class="site-title">Carolynn Heil Interiors</span>
+  <nav id="main-nav">
+    <a href="work.html">Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="about.html">About</a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ═══ φ BARS — two bars, same height, flush under header ═══ -->
+<div class="phi-bar-section" id="phi-bar-section" aria-hidden="true">
+  <!-- bars generated by JS -->
+</div>
+
+<!-- ═══ MAIN ══════════════════════════════════════════════════ -->
+<main>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Interior Design · Roaring Fork Valley</span>
+      <h1 class="hero-headline">
+        Spaces that feel like<br>
+        <strong>they were always yours</strong>
+      </h1>
+      <p class="hero-location">Aspen · Basalt · Carbondale · Snowmass</p>
+      <p class="hero-body">
+        Twenty years designing homes in one of the world's most breathtaking landscapes has taught me that the best interiors don't compete with their surroundings — they complete them. Every project begins with listening. Every room ends as a reflection of the life lived inside it.
+      </p>
+      <p class="hero-collab">Let's collaborate —</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-dark">Start a Conversation</a>
+        <a href="#work" class="btn btn-outline">View Work</a>
+      </div>
+    </div>
+
+    <!-- Animated geometric shapes -->
+    <div class="hero-shapes" id="hero-shapes">
+      <svg id="shapes-svg" viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;overflow:visible;"></svg>
+    </div>
+  </section>
+
+</main>
+
+
+
+<!-- Let's Collaborate band -->
+<div class="collab-band" id="collab-band">
+  <p class="collab-saying">"<em>Let's</em> collaborate."</p>
+  <a href="#contact" class="collab-btn">Start a conversation</a>
+</div>
+
+<!-- ═══ PROCESS SECTION ══════════════════════════════════════ -->
+<section id="process" style="background:var(--ch-off-white,#f7f6f3);padding:clamp(3rem,6vw,5rem) 0 0;">
+
+<style>
+/* Process widget styles — scoped inline */
+
+/* ═══════════════════════════════════════════════════════════════
+   PROCESS WIDGET — Carolynn Heil Interiors
+   Standalone · drops into any page · reads palette from localStorage
+═══════════════════════════════════════════════════════════════ */
+:root {
+  --font:          'Montserrat', sans-serif;
+  --black:         #0e0e0e;
+  --white:         #ffffff;
+  --off-white:     #f7f6f3;
+  --muted:         rgba(14,14,14,0.48);
+  --rule:          rgba(14,14,14,0.08);
+
+  /* Palette — overridden by JS */
+  --c0: #b5451b;
+  --c1: #1a7a8a;
+  --c2: #3d2314;
+  --c3: #8ec4cc;
+  --c4: #5a9e6f;
+  --c5: #7c3a2d;
+  --c6: #2e5c66;
+
+  --node-size:     78px;
+  --connector-h:   3px;
+  --step-gap:      clamp(1rem, 3vw, 2.5rem);
+  --content-pad:   clamp(1.5rem, 5vw, 4rem);
+  --max-w:         1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.widget-header {
+  padding: clamp(2.5rem, 5vw, 4rem) var(--content-pad) 0;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.widget-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--c0);
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.widget-title {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+.widget-title strong { font-weight: 900; }
+
+.widget-sub {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 52ch;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* ── Tab switcher ────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  width: fit-content;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.tab-btn {
+  font-family: var(--font);
+  font-size: 0.70rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background 0.18s, color 0.18s;
+  border-right: 1.5px solid var(--rule);
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn.active {
+  background: var(--c0);
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROCESS FLOW — horizontal scroll on mobile
+═══════════════════════════════════════════════════════════════ */
+.process-wrap {
+  padding: 0 var(--content-pad) clamp(2rem, 4vw, 3.5rem);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* The connector track — SVG line drawn behind all nodes */
+.connector-svg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Steps row */
+.steps-row {
+  display: flex;
+  gap: var(--step-gap);
+  align-items: flex-start;
+  position: relative;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  padding-right: var(--content-pad);
+  scrollbar-width: none;
+}
+.steps-row::-webkit-scrollbar { display: none; }
+
+/* Individual step */
+.step {
+  flex: 1;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Circle node */
+.step-node {
+  width: var(--node-size);
+  height: var(--node-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transform: scale(0);
+  transition: transform 0.05s, box-shadow 0.22s;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1rem;
+}
+
+.step-node.visible {
+  /* JS sets final transform via rAF animation */
+}
+
+.step-node.active {
+  box-shadow: 0 0 0 6px rgba(0,0,0,0.06);
+}
+
+.step-num {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Labels */
+.step-phase {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(14,14,14,0.62);
+  text-align: center;
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+.step-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: rgba(14,14,14,0.88);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s 0.06s, transform 0.4s 0.06s;
+}
+
+.step.text-visible .step-phase,
+.step.text-visible .step-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Connector line ───────────────────────────────────────────── */
+.connector {
+  height: var(--connector-h);
+  background: var(--rule);
+  border-radius: 2px;
+  position: absolute;
+  top: calc(var(--node-size) / 2 - var(--connector-h) / 2);
+  left: 50%;
+  right: calc(-1 * var(--step-gap));
+  z-index: 1;
+  overflow: hidden;
+}
+
+.connector-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
+  transition: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DETAIL PANEL — expands below when step is clicked
+═══════════════════════════════════════════════════════════════ */
+.detail-panel {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+.detail-card {
+  border-top: 3px solid var(--c0);
+  background: var(--off-white);
+  border-radius: 0 0 8px 8px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: none;
+  animation: cardIn 0.32s ease forwards;
+}
+.detail-card.open { display: block; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.detail-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.detail-num {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  /* color set by JS */
+}
+
+.detail-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.detail-phase {
+  font-size: 0.78rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+.detail-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.85rem;
+}
+
+.detail-point {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.point-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.point-text {
+  font-size: 0.83rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(14,14,14,0.75);
+}
+.point-text strong {
+  font-weight: 600;
+  color: var(--black);
+  display: block;
+  margin-bottom: 1px;
+}
+
+/* ── Key tips section ─────────────────────────────────────────── */
+.tips-section {
+  max-width: var(--max-w);
+  margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+  padding: 0 var(--content-pad) clamp(3rem, 6vw, 5rem);
+}
+
+.tips-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--c0);
+  margin-bottom: 1.4rem;
+  display: block;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+.tip-card {
+  border-top: 2px solid var(--black);
+  padding-top: 1rem;
+}
+
+.tip-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.tip-body {
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ── Collab footer ────────────────────────────────────────────── */
+.collab-strip {
+  background: var(--c0);
+  padding: clamp(2rem, 4vw, 3rem) var(--content-pad);
+  text-align: center;
+}
+
+.collab-text {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  margin-bottom: 1.2rem;
+}
+
+.collab-link {
+  display: inline-block;
+  font-size: 0.70rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c0);
+  background: var(--white);
+  padding: 12px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.18s;
+}
+.collab-link:hover { opacity: 0.85; }
+
+@media (max-width: 600px) {
+  :root { --node-size: 64px; }
+  .step-num { font-size: 1.15rem; }
+  .step-title { font-size: 0.80rem; }
+}
+
+</style>
+
+<div class="widget-header">
+  <span class="widget-eyebrow">Carolynn Heil Interiors · Process</span>
+  <h1 class="widget-title">How we <strong>work together</strong></h1>
+  <p class="widget-sub">
+    Every project follows a clear, collaborative path — from the first conversation to the final walkthrough. Here's exactly what to expect.
+  </p>
+  <!-- Nav header for when embedded as standalone page -->
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" data-tab="full">Full Interior Design</button>
+    <button class="tab-btn" data-tab="kb">Kitchen &amp; Bath</button>
+  </div>
+</div>
+
+<div class="process-wrap" id="process-wrap">
+  <div class="steps-row" id="steps-row"></div>
+</div>
+
+<div class="detail-panel" id="detail-panel">
+  <div class="detail-card" id="detail-card"></div>
+</div>
+
+<div class="tips-section" id="tips-section">
+  <span class="tips-label">Keys to a successful project</span>
+  <div class="tips-grid" id="tips-grid"></div>
+</div>
+
+
+
+<script>
+(function(){
+  'use strict';
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+
+  /* ── OKLCH ──────────────────────────────────────────────── */
+  function oklch(L,C,H){
+    L=Math.max(0,Math.min(1,L));C=Math.max(0,C);
+    const hr=H*Math.PI/180,a=C*Math.cos(hr),b=C*Math.sin(hr);
+    const l_=L+0.3963377774*a+0.2158037573*b;
+    const m_=L-0.1055613458*a-0.0638541728*b;
+    const s_=L-0.0894841775*a-1.2914855480*b;
+    const lv=l_*l_*l_,mv=m_*m_*m_,sv=s_*s_*s_;
+    let R=4.0767416621*lv-3.3077115913*mv+0.2309699292*sv;
+    let G=-1.2684380046*lv+2.6097574011*mv-0.3413193965*sv;
+    let B=-0.0041960863*lv-0.7034186147*mv+1.7076147010*sv;
+    const gc=x=>x<=0.0031308?12.92*x:1.055*Math.pow(Math.max(0,x),1/2.4)-0.055;
+    const hx=x=>Math.round(Math.max(0,Math.min(1,gc(x)))*255).toString(16).padStart(2,'0');
+    return'#'+hx(R)+hx(G)+hx(B);
+  }
+
+  function hexToOklch(hex){
+    const p=s=>parseInt(s,16)/255;
+    let r=p(hex.slice(1,3)),g=p(hex.slice(3,5)),b=p(hex.slice(5,7));
+    const gd=x=>x<=0.04045?x/12.92:Math.pow((x+0.055)/1.055,2.4);
+    r=gd(r);g=gd(g);b=gd(b);
+    const l=0.4122214708*r+0.5363325363*g+0.0514459929*b;
+    const m=0.2119034982*r+0.6806995451*g+0.1073969566*b;
+    const s=0.0883024619*r+0.2817188376*g+0.6299787005*b;
+    const l_=Math.cbrt(l),m_=Math.cbrt(m),s_=Math.cbrt(s);
+    const a=1.9779984951*l_-2.4285922050*m_+0.4505937099*s_;
+    const bv=0.0259040371*l_+0.7827717662*m_-0.8086757660*s_;
+    const Lo=0.2104542553*l_+0.7936177850*m_-0.0040720468*s_;
+    return{L:Lo,C:Math.sqrt(a*a+bv*bv),H:((Math.atan2(bv,a)*180/Math.PI)+360)%360};
+  }
+
+  function randomHex(){
+    return oklch(0.45+Math.random()*0.20,0.12+Math.random()*0.12,Math.random()*360);
+  }
+
+  function buildFamily(H,maxC,anchorL){
+    const steps=[
+      {L:0.965,cs:0.15},{L:0.890,cs:0.35},{L:0.790,cs:0.58},
+      {L:0.690,cs:0.80},{L:0.590,cs:1.00},{L:0.480,cs:0.82},
+      {L:0.370,cs:0.65},{L:0.255,cs:0.45},{L:0.145,cs:0.22},
+    ];
+    const sh=anchorL-0.590;
+    return steps.map(s=>oklch(Math.max(0.04,Math.min(0.97,s.L+sh)),maxC*s.cs,H));
+  }
+
+  /* ── Load palette ────────────────────────────────────────── */
+  const saved=(()=>{try{const r=localStorage.getItem('gsp_settings');return r?JSON.parse(r):null;}catch(e){return null;}})();
+  const baseHex=saved?.baseHex||randomHex();
+  const schemeId=saved?.schemeId||'comp';
+  const analogStep=saved?.analogStep||0;
+
+  const{H:bH,C:bC,L:bL}=hexToOklch(baseHex);
+  const iterH=(bH+analogStep*30)%360;
+  const maxC=Math.min(0.24,Math.max(bC*1.1,0.13));
+  const OFFSETS={mono:0,anal:30,comp:180,split:150,triad:120,tetrad:90,key:0};
+  const off=OFFSETS[schemeId]??180;
+
+  const famDom=buildFamily(iterH,maxC,bL);
+  const famSec=buildFamily((iterH+off)%360,maxC,bL);
+  const famAcc=buildFamily((iterH+120)%360,maxC,bL);
+
+  // 7 step colors — bold, varied, readable with white text
+  const STEP_COLORS=[
+    famDom[4],  // 1 dominant True
+    famSec[4],  // 2 complement True
+    famDom[6],  // 3 dominant Shade
+    famAcc[4],  // 4 accent True
+    famSec[6],  // 5 complement Shade
+    famDom[7],  // 6 dominant Dark
+    famDom[3],  // 7 dominant Mid-light
+  ];
+
+  // Apply CSS vars for tips + UI accents
+  document.documentElement.style.setProperty('--c0', famDom[4]);
+  document.documentElement.style.setProperty('--c1', famSec[4]);
+  document.documentElement.style.setProperty('--c2', famDom[6]);
+  document.documentElement.style.setProperty('--c3', famAcc[4]);
+  document.documentElement.style.setProperty('--c4', famSec[6]);
+  document.documentElement.style.setProperty('--c5', famDom[7]);
+  document.documentElement.style.setProperty('--c6', famDom[3]);
+
+  /* ═══════════════════════════════════════════════════════════
+     PROCESS DATA — from Carolynn's PDF
+  ═══════════════════════════════════════════════════════════ */
+  const FULL_PROCESS = [
+    {
+      title:'Consultation',
+      phase:'Finding the vision',
+      points:[
+        {label:'Initial Meeting', text:'We discuss your aesthetic preferences, functional needs, lifestyle, project scope, and budget.'},
+        {label:'Assessment', text:'We review existing drawings or take field measurements and photos of the space.'},
+        {label:'Goal', text:'To align on the overall scope and confirm that the project is a great fit for both of us.'},
+      ]
+    },
+    {
+      title:'Concept Development',
+      phase:'Generating the ideas',
+      points:[
+        {label:'Design Concepts', text:'Initial space plans and rough layouts — often with digital renderings or mood boards to visualize direction.'},
+        {label:'Drafting', text:'Preliminary floor plans to explore layout options and flow.'},
+        {label:'Collaboration', text:'Your input at this stage shapes everything that follows.'},
+      ]
+    },
+    {
+      title:'Design Development',
+      phase:'The details',
+      points:[
+        {label:'Refinement', text:'Based on your feedback, we select materials, finishes, lighting, and furniture.'},
+        {label:'Drawings & Samples', text:'Detailed elevations and cabinetry drawings, plus physical samples you can touch and feel in person.'},
+        {label:'Confidence', text:'Nothing is finalized until you love it.'},
+      ]
+    },
+    {
+      title:'Documentation & Estimation',
+      phase:'The plan',
+      points:[
+        {label:'Final Plans', text:'Comprehensive, actionable plans for contractors — including electrical and plumbing layouts.'},
+        {label:'Detailed Estimate', text:'A full budget for all materials and services, submitted for your approval before anything is purchased.'},
+        {label:'Transparency', text:'No surprises. Every line item is reviewed together.'},
+      ]
+    },
+    {
+      title:'Procurement & Purchasing',
+      phase:'Ordering',
+      points:[
+        {label:'Ordering', text:'We handle ordering, tracking, and logistical coordination of all furniture, materials, and fixtures.'},
+        {label:'Updates', text:'Regular status updates on every order so you always know where things stand.'},
+        {label:'Advocacy', text:'We manage vendor relationships on your behalf to ensure quality and timeline.'},
+      ]
+    },
+    {
+      title:'Construction & Installation',
+      phase:'The transformation',
+      points:[
+        {label:'Project Management', text:'We coordinate with contractors and tradespeople to ensure the design is implemented exactly right.'},
+        {label:'Installation & Styling', text:'Furniture delivered, installed, and styled. Art and accessories placed for a cohesive, finished look.'},
+        {label:'On-site Presence', text:'We are there to make real-time decisions so you don\'t have to.'},
+      ]
+    },
+    {
+      title:'Evaluation & Closeout',
+      phase:'The completion',
+      points:[
+        {label:'Final Walkthrough', text:'We review the finished project together and address any final adjustments.'},
+        {label:'Punch-list', text:'Every item is resolved before the project is officially closed.'},
+        {label:'Your Space', text:'The result is a home that feels unmistakably, completely yours.'},
+      ]
+    },
+  ];
+
+  const KB_PROCESS = [
+    {
+      title:'Discovery & Assessment',
+      phase:'Define your needs',
+      points:[
+        {label:'Goal', text:'Define your needs, habits, and budget clearly before anything is designed.'},
+        {label:'Process', text:'We discuss aesthetic preferences, cooking habits, appliance needs, and storage requirements.'},
+        {label:'Outcome', text:'A clear project scope and realistic budget both parties can commit to.'},
+      ]
+    },
+    {
+      title:'Site Visit & Measurements',
+      phase:'Precise documentation',
+      points:[
+        {label:'Goal', text:'Obtain precise measurements for an accurate, buildable design.'},
+        {label:'Process', text:'Professional visit to measure walls, windows, doors — and identify plumbing, electrical, and structural constraints.'},
+        {label:'Outcome', text:'A complete technical baseline that informs every subsequent decision.'},
+      ]
+    },
+    {
+      title:'Space Planning',
+      phase:'Ideas into plans',
+      points:[
+        {label:'Goal', text:'Translate ideas into a preliminary plan you can react to.'},
+        {label:'Process', text:'New layout options optimizing flow, focusing on the work triangle (sink, stove, refrigerator).'},
+        {label:'Outcome', text:'Conceptual sketches and early 3D renderings.'},
+      ]
+    },
+    {
+      title:'3D Renderings & Refinement',
+      phase:'Visualize the result',
+      points:[
+        {label:'Goal', text:'See the final space before a single wall is touched.'},
+        {label:'Process', text:'Convert 2D plans into detailed 3D renderings and elevation drawings.'},
+        {label:'Outcome', text:'Multiple revisions until you are completely satisfied with the layout and look.'},
+      ]
+    },
+    {
+      title:'Material Selection',
+      phase:'Finalize the look',
+      points:[
+        {label:'Goal', text:'Finalize the look and functionality of every surface.'},
+        {label:'Process', text:'Select cabinetry styles and finishes, countertops, backsplashes, hardware, and plumbing fixtures.'},
+        {label:'Outcome', text:'A complete, documented specification list for every material.'},
+      ]
+    },
+    {
+      title:'Final Plans & Commitment',
+      phase:'Prepare for construction',
+      points:[
+        {label:'Goal', text:'Prepare for construction with full technical documentation.'},
+        {label:'Process', text:'Finalize electrical, lighting, and plumbing plans for contractor use.'},
+        {label:'Outcome', text:'Contract execution and ordering of all materials.'},
+      ]
+    },
+    {
+      title:'Implementation',
+      phase:'The transformation',
+      points:[
+        {label:'Goal', text:'Bring the design to life exactly as envisioned.'},
+        {label:'Process', text:'Demolition, plumbing/electrical rough-in, cabinetry installation, countertops, and finishing touches.'},
+        {label:'Outcome', text:'A kitchen or bath that works as beautifully as it looks.'},
+      ]
+    },
+  ];
+
+  const TIPS = [
+    {title:'Establish a Budget Early', body:'Be clear about your budget from the start to ensure the design is realistic and achievable.'},
+    {title:'Gather Inspiration', body:'Bring photos from Pinterest or magazines to help convey your style before we begin.'},
+    {title:'Active Collaboration', body:'Your feedback during presentations is essential for moving the design forward confidently.'},
+    {title:'Include All Decision-Makers', body:'Ensure all stakeholders are present and involved at the key approval phases.'},
+  ];
+
+  /* ── Build tip cards ─────────────────────────────────────── */
+  const tipsGrid = document.getElementById('tips-grid');
+  TIPS.forEach(t=>{
+    tipsGrid.innerHTML += `
+      <div class="tip-card">
+        <p class="tip-title">${t.title}</p>
+        <p class="tip-body">${t.body}</p>
+      </div>`;
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     RENDER STEPS
+  ═══════════════════════════════════════════════════════════ */
+  let currentTab    = 'full';
+  let activeStep    = null;
+  let stepElements  = [];
+
+  function renderSteps(tab){
+    const data   = tab === 'full' ? FULL_PROCESS : KB_PROCESS;
+    const row    = document.getElementById('steps-row');
+    row.innerHTML = '';
+    stepElements  = [];
+    activeStep    = null;
+    document.getElementById('detail-card').classList.remove('open');
+
+    data.forEach((step, i)=>{
+      const color = STEP_COLORS[i % STEP_COLORS.length];
+      const el    = document.createElement('div');
+      el.className= 'step';
+
+      const isLast = i === data.length - 1;
+      el.innerHTML = `
+        <div class="step-node" id="node-${i}" style="background:${color};">
+          <span class="step-num">${String(i+1).padStart(2,'0')}</span>
+        </div>
+        ${!isLast ? `<div class="connector"><div class="connector-fill" style="background:${color};" id="conn-${i}"></div></div>` : ''}
+        <p class="step-phase">${step.phase}</p>
+        <p class="step-title">${step.title}</p>
+      `;
+      el.addEventListener('click',()=>openStep(i, data, color));
+      row.appendChild(el);
+      stepElements.push({el, node: el.querySelector('.step-node'), color, index: i});
+    });
+
+    animateIn(data.length);
+  }
+
+  /* ── Spring animation ────────────────────────────────────── */
+  function cubicBezier(p1x,p1y,p2x,p2y){
+    return t=>{
+      const cx=3*p1x,bx=3*(p2x-p1x)-cx,ax=1-cx-bx;
+      const cy=3*p1y,by=3*(p2y-p1y)-cy,ay=1-cy-by;
+      const sx=u=>((ax*u+bx)*u+cx)*u;
+      let u=t;for(let k=0;k<8;k++){const d=(3*ax*u+2*bx)*u+cx;if(Math.abs(d)<1e-6)break;u-=(sx(u)-t)/d;}
+      return((ay*u+by)*u+cy)*u;
+    };
+  }
+  const spring = cubicBezier(0.34,1.56,0.64,1);
+  const ease   = cubicBezier(0.22,1.0,0.36,1);
+
+  function animNode(nodeEl, delay){
+    let st=null,go=false;
+    function step(now){
+      if(!go){if(!st)st=now;if(now-st<delay){requestAnimationFrame(step);return;}st=now;go=true;}
+      const t=Math.min((now-st)/480,1);
+      nodeEl.style.transform=`scale(${spring(t).toFixed(4)})`;
+      if(t<1)requestAnimationFrame(step);
+      else nodeEl.closest('.step').classList.add('text-visible');
+    }
+    requestAnimationFrame(step);
+  }
+
+  function animConnector(fillEl, delay){
+    if(!fillEl)return;
+    let st=null,go=false;
+    function step(now){
+      if(!go){if(!st)st=now;if(now-st<delay){requestAnimationFrame(step);return;}st=now;go=true;}
+      const t=Math.min((now-st)/420,1);
+      fillEl.style.width=ease(t)*100+'%';
+      if(t<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function animateIn(n){
+    const STAGGER = 110;
+    for(let i=0;i<n;i++){
+      const node = document.getElementById(`node-${i}`);
+      const conn = document.getElementById(`conn-${i}`);
+      // Connector draws first, then node blooms
+      animConnector(conn,  i * STAGGER);
+      animNode(node,       i * STAGGER + 60);
+    }
+  }
+
+  /* ── Open step detail ────────────────────────────────────── */
+  function openStep(i, data, color){
+    const step = data[i];
+    const card = document.getElementById('detail-card');
+
+    if(activeStep === i){
+      card.classList.remove('open');
+      activeStep = null;
+      stepElements.forEach(s=>s.node.classList.remove('active'));
+      return;
+    }
+    activeStep = i;
+    card.style.borderTopColor = color;
+
+    stepElements.forEach((s,idx)=>{
+      s.node.classList.toggle('active', idx === i);
+    });
+
+    const points = step.points.map(p=>`
+      <div class="detail-point">
+        <div class="point-dot" style="background:${color};"></div>
+        <p class="point-text"><strong>${p.label}</strong>${p.text}</p>
+      </div>`).join('');
+
+    card.innerHTML = `
+      <div class="detail-header">
+        <span class="detail-num" style="color:${color};">Step ${String(i+1).padStart(2,'0')}</span>
+        <h3 class="detail-title">${step.title}</h3>
+      </div>
+      <p class="detail-phase">${step.phase}</p>
+      <div class="detail-points">${points}</div>`;
+
+    card.classList.add('open');
+    // Scroll card into view on mobile
+    setTimeout(()=>card.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
+  }
+
+  /* ── Tab switching ───────────────────────────────────────── */
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = btn.dataset.tab;
+      renderSteps(currentTab);
+    });
+  });
+
+  /* ── Boot ─────────────────────────────────────────────────── */
+  renderSteps('full');
+
+})();
+</script>
+
+</section>
+
+<script>
+/* ── Process widget ─────────────────────────────────────────── */
+(function(){
+
+  'use strict';
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+
+  /* ── OKLCH ──────────────────────────────────────────────── */
+  function oklch(L,C,H){
+    L=Math.max(0,Math.min(1,L));C=Math.max(0,C);
+    const hr=H*Math.PI/180,a=C*Math.cos(hr),b=C*Math.sin(hr);
+    const l_=L+0.3963377774*a+0.2158037573*b;
+    const m_=L-0.1055613458*a-0.0638541728*b;
+    const s_=L-0.0894841775*a-1.2914855480*b;
+    const lv=l_*l_*l_,mv=m_*m_*m_,sv=s_*s_*s_;
+    let R=4.0767416621*lv-3.3077115913*mv+0.2309699292*sv;
+    let G=-1.2684380046*lv+2.6097574011*mv-0.3413193965*sv;
+    let B=-0.0041960863*lv-0.7034186147*mv+1.7076147010*sv;
+    const gc=x=>x<=0.0031308?12.92*x:1.055*Math.pow(Math.max(0,x),1/2.4)-0.055;
+    const hx=x=>Math.round(Math.max(0,Math.min(1,gc(x)))*255).toString(16).padStart(2,'0');
+    return'#'+hx(R)+hx(G)+hx(B);
+  }
+
+  function hexToOklch(hex){
+    const p=s=>parseInt(s,16)/255;
+    let r=p(hex.slice(1,3)),g=p(hex.slice(3,5)),b=p(hex.slice(5,7));
+    const gd=x=>x<=0.04045?x/12.92:Math.pow((x+0.055)/1.055,2.4);
+    r=gd(r);g=gd(g);b=gd(b);
+    const l=0.4122214708*r+0.5363325363*g+0.0514459929*b;
+    const m=0.2119034982*r+0.6806995451*g+0.1073969566*b;
+    const s=0.0883024619*r+0.2817188376*g+0.6299787005*b;
+    const l_=Math.cbrt(l),m_=Math.cbrt(m),s_=Math.cbrt(s);
+    const a=1.9779984951*l_-2.4285922050*m_+0.4505937099*s_;
+    const bv=0.0259040371*l_+0.7827717662*m_-0.8086757660*s_;
+    const Lo=0.2104542553*l_+0.7936177850*m_-0.0040720468*s_;
+    return{L:Lo,C:Math.sqrt(a*a+bv*bv),H:((Math.atan2(bv,a)*180/Math.PI)+360)%360};
+  }
+
+  function randomHex(){
+    return oklch(0.45+Math.random()*0.20,0.12+Math.random()*0.12,Math.random()*360);
+  }
+
+  function buildFamily(H,maxC,anchorL){
+    const steps=[
+      {L:0.965,cs:0.15},{L:0.890,cs:0.35},{L:0.790,cs:0.58},
+      {L:0.690,cs:0.80},{L:0.590,cs:1.00},{L:0.480,cs:0.82},
+      {L:0.370,cs:0.65},{L:0.255,cs:0.45},{L:0.145,cs:0.22},
+    ];
+    const sh=anchorL-0.590;
+    return steps.map(s=>oklch(Math.max(0.04,Math.min(0.97,s.L+sh)),maxC*s.cs,H));
+  }
+
+  /* ── Load palette ────────────────────────────────────────── */
+  const saved=(()=>{try{const r=localStorage.getItem('gsp_settings');return r?JSON.parse(r):null;}catch(e){return null;}})();
+  const baseHex=saved?.baseHex||randomHex();
+  const schemeId=saved?.schemeId||'comp';
+  const analogStep=saved?.analogStep||0;
+
+  const{H:bH,C:bC,L:bL}=hexToOklch(baseHex);
+  const iterH=(bH+analogStep*30)%360;
+  const maxC=Math.min(0.24,Math.max(bC*1.1,0.13));
+  const OFFSETS={mono:0,anal:30,comp:180,split:150,triad:120,tetrad:90,key:0};
+  const off=OFFSETS[schemeId]??180;
+
+  const famDom=buildFamily(iterH,maxC,bL);
+  const famSec=buildFamily((iterH+off)%360,maxC,bL);
+  const famAcc=buildFamily((iterH+120)%360,maxC,bL);
+
+  // 7 step colors — bold, varied, readable with white text
+  const STEP_COLORS=[
+    famDom[4],  // 1 dominant True
+    famSec[4],  // 2 complement True
+    famDom[6],  // 3 dominant Shade
+    famAcc[4],  // 4 accent True
+    famSec[6],  // 5 complement Shade
+    famDom[7],  // 6 dominant Dark
+    famDom[3],  // 7 dominant Mid-light
+  ];
+
+  // Apply CSS vars for tips + UI accents
+  document.documentElement.style.setProperty('--c0', famDom[4]);
+  document.documentElement.style.setProperty('--c1', famSec[4]);
+  document.documentElement.style.setProperty('--c2', famDom[6]);
+  document.documentElement.style.setProperty('--c3', famAcc[4]);
+  document.documentElement.style.setProperty('--c4', famSec[6]);
+  document.documentElement.style.setProperty('--c5', famDom[7]);
+  document.documentElement.style.setProperty('--c6', famDom[3]);
+
+  /* ═══════════════════════════════════════════════════════════
+     PROCESS DATA — from Carolynn's PDF
+  ═══════════════════════════════════════════════════════════ */
+  const FULL_PROCESS = [
+    {
+      title:'Consultation',
+      phase:'Finding the vision',
+      points:[
+        {label:'Initial Meeting', text:'We discuss your aesthetic preferences, functional needs, lifestyle, project scope, and budget.'},
+        {label:'Assessment', text:'We review existing drawings or take field measurements and photos of the space.'},
+        {label:'Goal', text:'To align on the overall scope and confirm that the project is a great fit for both of us.'},
+      ]
+    },
+    {
+      title:'Concept Development',
+      phase:'Generating the ideas',
+      points:[
+        {label:'Design Concepts', text:'Initial space plans and rough layouts — often with digital renderings or mood boards to visualize direction.'},
+        {label:'Drafting', text:'Preliminary floor plans to explore layout options and flow.'},
+        {label:'Collaboration', text:'Your input at this stage shapes everything that follows.'},
+      ]
+    },
+    {
+      title:'Design Development',
+      phase:'The details',
+      points:[
+        {label:'Refinement', text:'Based on your feedback, we select materials, finishes, lighting, and furniture.'},
+        {label:'Drawings & Samples', text:'Detailed elevations and cabinetry drawings, plus physical samples you can touch and feel in person.'},
+        {label:'Confidence', text:'Nothing is finalized until you love it.'},
+      ]
+    },
+    {
+      title:'Documentation & Estimation',
+      phase:'The plan',
+      points:[
+        {label:'Final Plans', text:'Comprehensive, actionable plans for contractors — including electrical and plumbing layouts.'},
+        {label:'Detailed Estimate', text:'A full budget for all materials and services, submitted for your approval before anything is purchased.'},
+        {label:'Transparency', text:'No surprises. Every line item is reviewed together.'},
+      ]
+    },
+    {
+      title:'Procurement & Purchasing',
+      phase:'Ordering',
+      points:[
+        {label:'Ordering', text:'We handle ordering, tracking, and logistical coordination of all furniture, materials, and fixtures.'},
+        {label:'Updates', text:'Regular status updates on every order so you always know where things stand.'},
+        {label:'Advocacy', text:'We manage vendor relationships on your behalf to ensure quality and timeline.'},
+      ]
+    },
+    {
+      title:'Construction & Installation',
+      phase:'The transformation',
+      points:[
+        {label:'Project Management', text:'We coordinate with contractors and tradespeople to ensure the design is implemented exactly right.'},
+        {label:'Installation & Styling', text:'Furniture delivered, installed, and styled. Art and accessories placed for a cohesive, finished look.'},
+        {label:'On-site Presence', text:'We are there to make real-time decisions so you don\'t have to.'},
+      ]
+    },
+    {
+      title:'Evaluation & Closeout',
+      phase:'The completion',
+      points:[
+        {label:'Final Walkthrough', text:'We review the finished project together and address any final adjustments.'},
+        {label:'Punch-list', text:'Every item is resolved before the project is officially closed.'},
+        {label:'Your Space', text:'The result is a home that feels unmistakably, completely yours.'},
+      ]
+    },
+  ];
+
+  const KB_PROCESS = [
+    {
+      title:'Discovery & Assessment',
+      phase:'Define your needs',
+      points:[
+        {label:'Goal', text:'Define your needs, habits, and budget clearly before anything is designed.'},
+        {label:'Process', text:'We discuss aesthetic preferences, cooking habits, appliance needs, and storage requirements.'},
+        {label:'Outcome', text:'A clear project scope and realistic budget both parties can commit to.'},
+      ]
+    },
+    {
+      title:'Site Visit & Measurements',
+      phase:'Precise documentation',
+      points:[
+        {label:'Goal', text:'Obtain precise measurements for an accurate, buildable design.'},
+        {label:'Process', text:'Professional visit to measure walls, windows, doors — and identify plumbing, electrical, and structural constraints.'},
+        {label:'Outcome', text:'A complete technical baseline that informs every subsequent decision.'},
+      ]
+    },
+    {
+      title:'Space Planning',
+      phase:'Ideas into plans',
+      points:[
+        {label:'Goal', text:'Translate ideas into a preliminary plan you can react to.'},
+        {label:'Process', text:'New layout options optimizing flow, focusing on the work triangle (sink, stove, refrigerator).'},
+        {label:'Outcome', text:'Conceptual sketches and early 3D renderings.'},
+      ]
+    },
+    {
+      title:'3D Renderings & Refinement',
+      phase:'Visualize the result',
+      points:[
+        {label:'Goal', text:'See the final space before a single wall is touched.'},
+        {label:'Process', text:'Convert 2D plans into detailed 3D renderings and elevation drawings.'},
+        {label:'Outcome', text:'Multiple revisions until you are completely satisfied with the layout and look.'},
+      ]
+    },
+    {
+      title:'Material Selection',
+      phase:'Finalize the look',
+      points:[
+        {label:'Goal', text:'Finalize the look and functionality of every surface.'},
+        {label:'Process', text:'Select cabinetry styles and finishes, countertops, backsplashes, hardware, and plumbing fixtures.'},
+        {label:'Outcome', text:'A complete, documented specification list for every material.'},
+      ]
+    },
+    {
+      title:'Final Plans & Commitment',
+      phase:'Prepare for construction',
+      points:[
+        {label:'Goal', text:'Prepare for construction with full technical documentation.'},
+        {label:'Process', text:'Finalize electrical, lighting, and plumbing plans for contractor use.'},
+        {label:'Outcome', text:'Contract execution and ordering of all materials.'},
+      ]
+    },
+    {
+      title:'Implementation',
+      phase:'The transformation',
+      points:[
+        {label:'Goal', text:'Bring the design to life exactly as envisioned.'},
+        {label:'Process', text:'Demolition, plumbing/electrical rough-in, cabinetry installation, countertops, and finishing touches.'},
+        {label:'Outcome', text:'A kitchen or bath that works as beautifully as it looks.'},
+      ]
+    },
+  ];
+
+  const TIPS = [
+    {title:'Establish a Budget Early', body:'Be clear about your budget from the start to ensure the design is realistic and achievable.'},
+    {title:'Gather Inspiration', body:'Bring photos from Pinterest or magazines to help convey your style before we begin.'},
+    {title:'Active Collaboration', body:'Your feedback during presentations is essential for moving the design forward confidently.'},
+    {title:'Include All Decision-Makers', body:'Ensure all stakeholders are present and involved at the key approval phases.'},
+  ];
+
+  /* ── Build tip cards ─────────────────────────────────────── */
+  const tipsGrid = document.getElementById('tips-grid');
+  TIPS.forEach(t=>{
+    tipsGrid.innerHTML += `
+      <div class="tip-card">
+        <p class="tip-title">${t.title}</p>
+        <p class="tip-body">${t.body}</p>
+      </div>`;
+  });
+
+  /* ═══════════════════════════════════════════════════════════
+     RENDER STEPS
+  ═══════════════════════════════════════════════════════════ */
+  let currentTab    = 'full';
+  let activeStep    = null;
+  let stepElements  = [];
+
+  function renderSteps(tab){
+    const data   = tab === 'full' ? FULL_PROCESS : KB_PROCESS;
+    const row    = document.getElementById('steps-row');
+    row.innerHTML = '';
+    stepElements  = [];
+    activeStep    = null;
+    document.getElementById('detail-card').classList.remove('open');
+
+    data.forEach((step, i)=>{
+      const color = STEP_COLORS[i % STEP_COLORS.length];
+      const el    = document.createElement('div');
+      el.className= 'step';
+
+      const isLast = i === data.length - 1;
+      el.innerHTML = `
+        <div class="step-node" id="node-${i}" style="background:${color};">
+          <span class="step-num">${String(i+1).padStart(2,'0')}</span>
+        </div>
+        ${!isLast ? `<div class="connector"><div class="connector-fill" style="background:${color};" id="conn-${i}"></div></div>` : ''}
+        <p class="step-phase">${step.phase}</p>
+        <p class="step-title">${step.title}</p>
+      `;
+      el.addEventListener('click',()=>openStep(i, data, color));
+      row.appendChild(el);
+      stepElements.push({el, node: el.querySelector('.step-node'), color, index: i});
+    });
+
+    animateIn(data.length);
+  }
+
+  /* ── Spring animation ────────────────────────────────────── */
+  function cubicBezier(p1x,p1y,p2x,p2y){
+    return t=>{
+      const cx=3*p1x,bx=3*(p2x-p1x)-cx,ax=1-cx-bx;
+      const cy=3*p1y,by=3*(p2y-p1y)-cy,ay=1-cy-by;
+      const sx=u=>((ax*u+bx)*u+cx)*u;
+      let u=t;for(let k=0;k<8;k++){const d=(3*ax*u+2*bx)*u+cx;if(Math.abs(d)<1e-6)break;u-=(sx(u)-t)/d;}
+      return((ay*u+by)*u+cy)*u;
+    };
+  }
+  const spring = cubicBezier(0.34,1.56,0.64,1);
+  const ease   = cubicBezier(0.22,1.0,0.36,1);
+
+  function animNode(nodeEl, delay){
+    let st=null,go=false;
+    function step(now){
+      if(!go){if(!st)st=now;if(now-st<delay){requestAnimationFrame(step);return;}st=now;go=true;}
+      const t=Math.min((now-st)/480,1);
+      nodeEl.style.transform=`scale(${spring(t).toFixed(4)})`;
+      if(t<1)requestAnimationFrame(step);
+      else nodeEl.closest('.step').classList.add('text-visible');
+    }
+    requestAnimationFrame(step);
+  }
+
+  function animConnector(fillEl, delay){
+    if(!fillEl)return;
+    let st=null,go=false;
+    function step(now){
+      if(!go){if(!st)st=now;if(now-st<delay){requestAnimationFrame(step);return;}st=now;go=true;}
+      const t=Math.min((now-st)/420,1);
+      fillEl.style.width=ease(t)*100+'%';
+      if(t<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function animateIn(n){
+    const STAGGER = 110;
+    for(let i=0;i<n;i++){
+      const node = document.getElementById(`node-${i}`);
+      const conn = document.getElementById(`conn-${i}`);
+      // Connector draws first, then node blooms
+      animConnector(conn,  i * STAGGER);
+      animNode(node,       i * STAGGER + 60);
+    }
+  }
+
+  /* ── Open step detail ────────────────────────────────────── */
+  function openStep(i, data, color){
+    const step = data[i];
+    const card = document.getElementById('detail-card');
+
+    if(activeStep === i){
+      card.classList.remove('open');
+      activeStep = null;
+      stepElements.forEach(s=>s.node.classList.remove('active'));
+      return;
+    }
+    activeStep = i;
+    card.style.borderTopColor = color;
+
+    stepElements.forEach((s,idx)=>{
+      s.node.classList.toggle('active', idx === i);
+    });
+
+    const points = step.points.map(p=>`
+      <div class="detail-point">
+        <div class="point-dot" style="background:${color};"></div>
+        <p class="point-text"><strong>${p.label}</strong>${p.text}</p>
+      </div>`).join('');
+
+    card.innerHTML = `
+      <div class="detail-header">
+        <span class="detail-num" style="color:${color};">Step ${String(i+1).padStart(2,'0')}</span>
+        <h3 class="detail-title">${step.title}</h3>
+      </div>
+      <p class="detail-phase">${step.phase}</p>
+      <div class="detail-points">${points}</div>`;
+
+    card.classList.add('open');
+    // Scroll card into view on mobile
+    setTimeout(()=>card.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
+  }
+
+  /* ── Tab switching ───────────────────────────────────────── */
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTab = btn.dataset.tab;
+      renderSteps(currentTab);
+    });
+  });
+
+  /* ── Boot ─────────────────────────────────────────────────── */
+  renderSteps('full');
+
+
+})();
+</script>
+
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-logo">CH</a>
+      <span class="footer-name">Carolynn Heil Interiors</span>
+      <p class="footer-tagline">"Let's collaborate."</p>
+    </div>
+    <div>
+      <span class="footer-col-title">Navigate</span>
+      <ul class="footer-links">
+        <li><a href="work.html">Work</a></li>
+        <li><a href="index.html#process">Process</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="golden-section-palette.html">Palette Studio</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Get in touch</span>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@carolynnheilinteriors.com">hello@carolynnheil<br>interiors.com</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Houzz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Carolynn Heil Interiors. All rights reserved.</span>
+    <span class="footer-location">Aspen · Roaring Fork Valley · Colorado</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  const PHI = (1 + Math.sqrt(5)) / 2;
+
+  /* ── OKLCH ──────────────────────────────────────────────── */
+  function oklch(L,C,H){
+    L=Math.max(0,Math.min(1,L));C=Math.max(0,C);
+    const hr=H*Math.PI/180,a=C*Math.cos(hr),b=C*Math.sin(hr);
+    const l_=L+0.3963377774*a+0.2158037573*b;
+    const m_=L-0.1055613458*a-0.0638541728*b;
+    const s_=L-0.0894841775*a-1.2914855480*b;
+    const lv=l_*l_*l_,mv=m_*m_*m_,sv=s_*s_*s_;
+    let R= 4.0767416621*lv-3.3077115913*mv+0.2309699292*sv;
+    let G=-1.2684380046*lv+2.6097574011*mv-0.3413193965*sv;
+    let B=-0.0041960863*lv-0.7034186147*mv+1.7076147010*sv;
+    const gc=x=>x<=0.0031308?12.92*x:1.055*Math.pow(Math.max(0,x),1/2.4)-0.055;
+    const hx=x=>Math.round(Math.max(0,Math.min(1,gc(x)))*255).toString(16).padStart(2,'0');
+    return'#'+hx(R)+hx(G)+hx(B);
+  }
+
+  function hexToOklch(hex){
+    const p=s=>parseInt(s,16)/255;
+    let r=p(hex.slice(1,3)),g=p(hex.slice(3,5)),b=p(hex.slice(5,7));
+    const gd=x=>x<=0.04045?x/12.92:Math.pow((x+0.055)/1.055,2.4);
+    r=gd(r);g=gd(g);b=gd(b);
+    const l=0.4122214708*r+0.5363325363*g+0.0514459929*b;
+    const m=0.2119034982*r+0.6806995451*g+0.1073969566*b;
+    const s=0.0883024619*r+0.2817188376*g+0.6299787005*b;
+    const l_=Math.cbrt(l),m_=Math.cbrt(m),s_=Math.cbrt(s);
+    const a =1.9779984951*l_-2.4285922050*m_+0.4505937099*s_;
+    const bv=0.0259040371*l_+0.7827717662*m_-0.8086757660*s_;
+    const Lo=0.2104542553*l_+0.7936177850*m_-0.0040720468*s_;
+    return{L:Lo,C:Math.sqrt(a*a+bv*bv),H:((Math.atan2(bv,a)*180/Math.PI)+360)%360};
+  }
+
+  function randomHex(){
+    return oklch(0.45+Math.random()*0.20,0.12+Math.random()*0.12,Math.random()*360);
+  }
+
+  /* ── Tonal family ─────────────────────────────────────────── */
+  const BASE_STEPS=[
+    {L:0.965,cScale:0.15},{L:0.890,cScale:0.35},{L:0.790,cScale:0.58},
+    {L:0.690,cScale:0.80},{L:0.590,cScale:1.00},{L:0.480,cScale:0.82},
+    {L:0.370,cScale:0.65},{L:0.255,cScale:0.45},{L:0.145,cScale:0.22},
+  ];
+
+  function buildFamily(H,maxC,anchorL){
+    const shift=anchorL-0.590;
+    return BASE_STEPS.map(s=>{
+      const Lv=Math.max(0.04,Math.min(0.97,s.L+shift));
+      return oklch(Lv,maxC*s.cScale,H);
+    });
+  }
+
+  /* ── Load settings from palette studio ───────────────────── */
+  function loadSettings(){
+    try{const r=localStorage.getItem('gsp_settings');if(r)return JSON.parse(r);}
+    catch(e){}return null;
+  }
+
+  const saved     = loadSettings();
+  const baseHex   = saved?.baseHex   || randomHex();
+  const schemeId  = saved?.schemeId  || 'comp';
+  const analogStep= saved?.analogStep|| 0;
+
+  const{H:bH,C:bC,L:bL}=hexToOklch(baseHex);
+  const iterH=(bH+analogStep*30)%360;
+  const maxC=Math.min(0.24,Math.max(bC*1.1,0.13));
+
+  const OFFSETS={mono:0,anal:30,comp:180,split:150,triad:120,tetrad:90,key:0};
+  const off=OFFSETS[schemeId]??180;
+
+  const famDom=buildFamily(iterH,           maxC,bL);
+  const famSec=buildFamily((iterH+off)%360, maxC,bL);
+  // For swatches — a third harmonic family
+  const famAcc=buildFamily((iterH+120)%360, maxC,bL);
+
+  /* ── Apply base color to logo + CSS vars ─────────────────── */
+  const baseTrue = famDom[4];  // True (500)
+  const compTrue = famSec[4];  // Complement True
+  document.documentElement.style.setProperty('--ch-base', baseTrue);
+  document.documentElement.style.setProperty('--ch-comp', compTrue);
+  document.getElementById('ch-logo').style.color = baseTrue;
+
+  /* ═══════════════════════════════════════════════════════════
+     φ BAR ANIMATION
+     Bars are generated dynamically to fill the viewport.
+     Bar 1 = 30% of viewport width.
+     Each subsequent bar = previous ÷ φ.
+     Bars are generated until their cumulative width fills
+     the viewport — the last one is clipped by overflow:hidden.
+     Colors cycle through the palette tonal levels.
+     Each bar staggers 70ms after the previous starts.
+  ═══════════════════════════════════════════════════════════ */
+
+  // Colour sequence cycling through palette families and tonal levels
+  // Chosen for bold contrast and tasteful variation
+  const BAR_COLORS = [
+    famDom[4],  // dominant True
+    famSec[4],  // complement True
+    famDom[7],  // dominant Dark
+    famSec[2],  // complement Light
+    famDom[5],  // dominant Tone
+    famSec[7],  // complement Dark
+    famAcc[4],  // accent True
+    famDom[3],  // dominant Mid-light
+    famSec[5],  // complement Tone
+    famAcc[6],  // accent Shade
+    famDom[6],  // dominant Shade
+    famSec[3],  // complement Mid-light
+  ];
+
+  const STAGGER_MS = 70;    // ms between each bar starting
+  const MIN_PX     = 1;     // stop generating below this px width
+
+  function easeOutCubic(t){ return 1-Math.pow(1-t,3); }
+  function easeOutExpo(t){  return t===1?1:1-Math.pow(2,-10*t); }
+
+  function buildBars(){
+    const container = document.getElementById('phi-bar-section');
+    container.innerHTML = '';
+
+    const vw = window.innerWidth;
+    const firstW = vw * 0.45;   // 45% of viewport in px
+
+    // Generate widths: 30%, 30/φ%, 30/φ²%... until sum >= vw
+    const widths = [];
+    let w = firstW, sum = 0;
+    while(sum < vw + 2 && w >= MIN_PX){
+      // If this bar would overshoot, clip it to remaining space
+      const clipped = Math.min(w, vw - sum + 2);
+      widths.push(clipped);
+      sum += clipped;
+      w = w / PHI;
+      if(sum >= vw) break;
+    }
+
+    // Duration scales with bar width — wider bars take longer
+    // so all bars feel like they arrive at similar speed
+    function barDuration(px){
+      return Math.max(260, Math.min(900, px * 1.6 + 180));
+    }
+
+    // Create and animate each bar
+    widths.forEach((targetPx, i)=>{
+      const bar = document.createElement('div');
+      bar.className = 'phi-bar';
+      bar.style.background = BAR_COLORS[i % BAR_COLORS.length];
+      container.appendChild(bar);
+
+      const delay    = i * STAGGER_MS;
+      const duration = barDuration(targetPx);
+      let startTime  = null;
+      let started    = false;
+
+      function step(now){
+        if(!started){
+          if(!startTime) startTime = now;
+          if(now - startTime < delay){ requestAnimationFrame(step); return; }
+          startTime = now;
+          started   = true;
+        }
+        const t  = Math.min((now - startTime) / duration, 1);
+        // Wide bars: easeOutCubic (confidence)
+        // Narrow bars: easeOutExpo (snappy)
+        const px = (targetPx > 80 ? easeOutCubic(t) : easeOutExpo(t)) * targetPx;
+        bar.style.width = px.toFixed(2) + 'px';
+        if(t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+
+    return widths.length;
+  }
+
+  const barCount = buildBars();
+
+  // Rebuild on resize
+  let resizeTimer = null;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildBars, 150);
+  });
+
+  /* ── Hero swatch grid ─────────────────────────────────────── */
+  /* Layout matching the image:
+     col 1 (wide, 2 rows tall): dominant True
+     col 2 row 1 (large):       complement Dark
+     col 3 row 1 (narrow):      dominant Light (tint)
+     col 2 row 2 (small):       complement True
+     col 3a row 2:              dominant Shade
+     col 3b row 2:              accent/triad True
+  ──────────────────────────────────────────────────────────── */
+  /* ══════════════════════════════════════════════════════════
+     GOLDEN SECTION SPIRAL — hero illustration
+     Exactly mirrors the φ-rectangle subdivision:
+       Each square is filled solid with a palette color.
+       The Fibonacci arc is drawn on top as a fine white line.
+       Squares bloom in sequentially from their arc pivot.
+     Layout fits the SVG viewBox (480×380).
+  ══════════════════════════════════════════════════════════ */
+  const svg = document.getElementById('shapes-svg');
+  const NS  = 'http://www.w3.org/2000/svg';
+
+  // Golden rectangle sized to fill viewBox comfortably
+  const VW = 480, VH = 380;
+  const PHI_LOCAL = (1 + Math.sqrt(5)) / 2;
+  const GW = VW - 20;                         // leave small margin
+  const GH = Math.round(GW / PHI_LOCAL);
+  const GX = 10;                               // left margin
+  const GY = Math.round((VH - GH) / 2);       // center vertically
+
+  // Color sequence — bold palette colors for each square
+  const SPIRAL_COLORS = [
+    famDom[4],   // 0 largest  — dominant True
+    famSec[4],   // 1          — complement True
+    famSec[2],   // 2          — complement Light
+    famDom[6],   // 3          — dominant Shade
+    famAcc[4],   // 4          — accent True
+    famDom[7],   // 5          — dominant Dark
+    famAcc[2],   // 6          — accent Light
+    famSec[5],   // 7          — complement Tone
+    famDom[3],   // 8          — dominant Mid-light
+    famSec[6],   // 9          — complement Shade
+    famDom[5],   // 10         — dominant Tone
+    famAcc[5],   // 11 smallest— accent Tone
+  ];
+
+  /* ── Build φ-subdivided squares ──────────────────────────── */
+  function buildSquares(x, y, w, h, n){
+    const DIRS = ['right','top','left','bottom'];
+    const out  = [];
+    for(let i=0; i<n; i++){
+      const sq = w >= h ? h : w;
+      if(sq < 1) break;
+      const d  = DIRS[i % 4];
+      let sx, sy;
+      if      (d==='right'){ sx=x+w-sq; sy=y;      w-=sq; }
+      else if (d==='top')  { sx=x;      sy=y;      y+=sq; h-=sq; }
+      else if (d==='left') { sx=x;      sy=y;      x+=sq; w-=sq; }
+      else                 { sx=x;      sy=y+h-sq;         h-=sq; }
+      out.push({sx, sy, sq, d});
+    }
+    return out;
+  }
+
+  /* ── Arc pivot for each square ───────────────────────────── */
+  function arcOf(s){
+    const {sx,sy,sq,d} = s;
+    if(d==='right') return {cx:sx,     cy:sy+sq, r:sq, sa:-Math.PI/2, ea:0           };
+    if(d==='top')   return {cx:sx+sq,  cy:sy+sq, r:sq, sa:Math.PI,    ea:Math.PI*1.5 };
+    if(d==='left')  return {cx:sx+sq,  cy:sy,    r:sq, sa:Math.PI*.5, ea:Math.PI     };
+    return                 {cx:sx,     cy:sy,    r:sq, sa:0,           ea:Math.PI*.5  };
+  }
+
+  const SQ_DATA = buildSquares(GX, GY, GW, GH, 12);
+  const N_SQ    = SQ_DATA.length;
+
+  /* ── Create SVG rect elements (start invisible) ─────────── */
+  const rectEls = [];
+  SQ_DATA.forEach((s, i) => {
+    const rect = document.createElementNS(NS, 'rect');
+    rect.setAttribute('x',      s.sx);
+    rect.setAttribute('y',      s.sy);
+    rect.setAttribute('width',  s.sq);
+    rect.setAttribute('height', s.sq);
+    rect.setAttribute('fill',   SPIRAL_COLORS[i % SPIRAL_COLORS.length]);
+    // Clip each rect to a circle from its arc pivot so it blooms in
+    rect.style.transformOrigin = `${s.sx + s.sq/2}px ${s.sy + s.sq/2}px`;
+    rect.style.transform = 'scale(0)';
+    svg.appendChild(rect);
+    rectEls.push(rect);
+  });
+
+  /* ── Spiral arc path (drawn on top, white) ───────────────── */
+  const arcPath = document.createElementNS(NS, 'path');
+  arcPath.setAttribute('fill',         'none');
+  arcPath.setAttribute('stroke',       'rgba(255,255,255,0.82)');
+  arcPath.setAttribute('stroke-width', '2.5');
+  arcPath.setAttribute('stroke-linecap','round');
+  arcPath.setAttribute('d', '');
+  svg.appendChild(arcPath);
+
+  /* ── Easing ──────────────────────────────────────────────── */
+  function easeOutCubic(t){ return 1 - Math.pow(1-t, 3); }
+  function springEase(t){   return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  /* ── Animate squares + arc sequentially ─────────────────── */
+  const STAGGER   = 120;   // ms between squares
+  const SQ_DUR    = t => Math.max(200, Math.min(700, t * 1.8 + 120));
+  const ARC_DUR   = 320;
+
+  let arcD = '';           // accumulated arc path string
+
+  function animateArcSegment(s, delay){
+    const a   = arcOf(s);
+    const dur = ARC_DUR;
+    let st=null, go=false;
+    function step(now){
+      if(!go){ if(!st)st=now; if(now-st<delay){requestAnimationFrame(step);return;} st=now; go=true; }
+      const t   = Math.min((now-st)/dur, 1);
+      const ang = a.sa + (a.ea - a.sa) * easeOutCubic(t);
+      const x   = a.cx + a.r * Math.cos(ang);
+      const y   = a.cy + a.r * Math.sin(ang);
+      // Rebuild arc path up to current angle
+      const thisArc = `M ${(a.cx + a.r*Math.cos(a.sa)).toFixed(1)} ${(a.cy + a.r*Math.sin(a.sa)).toFixed(1)} A ${a.r} ${a.r} 0 0 ${a.sa < a.ea ? 1 : 0} ${x.toFixed(1)} ${y.toFixed(1)}`;
+      arcPath.setAttribute('d', arcD + ' ' + thisArc);
+      if(t < 1) requestAnimationFrame(step);
+      else {
+        // Lock this arc segment permanently
+        arcD += ` M ${(a.cx+a.r*Math.cos(a.sa)).toFixed(1)} ${(a.cy+a.r*Math.sin(a.sa)).toFixed(1)} A ${a.r} ${a.r} 0 0 ${a.sa < a.ea ? 1 : 0} ${(a.cx+a.r*Math.cos(a.ea)).toFixed(1)} ${(a.cy+a.r*Math.sin(a.ea)).toFixed(1)}`;
+        arcPath.setAttribute('d', arcD);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function animateSquare(el, sq, delay){
+    const dur = SQ_DUR(sq);
+    let st=null, go=false;
+    function step(now){
+      if(!go){ if(!st)st=now; if(now-st<delay){requestAnimationFrame(step);return;} st=now; go=true; }
+      const t  = Math.min((now-st)/dur, 1);
+      const sc = springEase(t);
+      el.style.transform = `scale(${sc.toFixed(4)})`;
+      if(t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  setTimeout(()=>{
+    SQ_DATA.forEach((s, i) => {
+      const delay = i * STAGGER;
+      animateSquare(rectEls[i], s.sq, delay);
+      animateArcSegment(s, delay + 60);
+    });
+    document.getElementById('hero')?.classList.add('visible');
+  }, 9 * 70 + 900 + 100);
+
+
+    /* ── Scroll-triggered fade-ins ────────────────────────────── */
+  const fadeEls=[
+    {id:'services',    delay:0},
+    {id:'collab-band', delay:100},
+  ];
+  fadeEls.forEach(({id})=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+    },{threshold:0.12}).observe(el);
+  });
+
+  // Hero fades in after bars land
+  setTimeout(()=>{
+    document.getElementById('hero')?.classList.add('visible');
+  }, STAGGER + DURATION + 120);
+
+  /* ── Mobile nav ───────────────────────────────────────────── */
+  document.getElementById('nav-toggle')?.addEventListener('click',()=>{
+    document.getElementById('main-nav')?.classList.toggle('open');
+  });
+
+})();
+</script>
+</body>
+</html>
