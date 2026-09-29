@@ -34,6 +34,49 @@ header {
 .back-link { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.18s; }
 .back-link:hover { color: var(--ch-base); }
 
+/* ── Site nav ─────────────────────────────────────────────
+   So the header matches every other page. Each page carries its own styles
+   rather than a shared sheet, so these are brought across from index.html. */
+nav { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem); }
+nav a {
+  font-size: 0.80rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--black); text-decoration: none;
+  opacity: 0.70; transition: opacity 0.18s;
+}
+nav a:hover { opacity: 1; }
+nav a.nav-contact {
+  opacity: 1; border: 1.5px solid var(--black); padding: 9px 20px;
+  border-radius: 2px; transition: background 0.18s, color 0.18s;
+}
+nav a.nav-contact:hover { background: var(--black); color: var(--white); }
+
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--black); }
+
+@media (max-width: 760px) {
+  nav { display: none; }
+  nav.open {
+    display: flex; flex-direction: column; align-items: flex-start;
+    position: absolute; top: var(--header-h); left: 0; right: 0;
+    background: var(--white); border-bottom: 1px solid var(--rule);
+    padding: 1.25rem var(--pad) 1.5rem; gap: 1.1rem;
+  }
+  .nav-toggle { display: flex; }
+  .header-title { display: none; }
+}
+
+/* ── In-progress notice ───────────────────────────────────
+   Site-wide, so nobody mistakes an unfinished section for the finished work. */
+.wip {
+  background: var(--ch-base, #7a6a58); color: #fff;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+  text-align: center; padding: 8px var(--pad); line-height: 1.5;
+}
+.wip b { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
 /* ── Page ────────────────────────────────────────────────── */
 .page { max-width: var(--max-w); margin: 0 auto; padding: clamp(2rem,5vw,4rem) var(--pad) 4rem; }
 
@@ -282,10 +325,19 @@ header {
 </head>
 <body>
 
+<div class="wip"><b>Work in progress</b> — this site is still being built. Some sections are incomplete.</div>
+
 <header>
   <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
   <span class="header-title">Site Settings</span>
-  <a href="index.html" class="back-link">← Back to site</a>
+  <nav id="main-nav">
+    <a href="work.html">Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="index.html#contact" class="nav-contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
 <div class="page">
@@ -719,6 +771,11 @@ header {
   render();
 
 })();
+
+  // Mobile menu, matching the other pages.
+  document.getElementById('nav-toggle')?.addEventListener('click',()=>{
+    document.getElementById('main-nav')?.classList.toggle('open');
+  });
 </script>
 </body>
 </html>

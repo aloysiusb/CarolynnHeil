@@ -282,9 +282,20 @@ footer {
 }
 .footer-copy { font-size: 0.65rem; font-weight: 300; color: rgba(255,255,255,0.28); letter-spacing: 0.06em; }
 .footer-location { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+
+/* ── In-progress notice ───────────────────────────────────
+   Site-wide, so nobody mistakes an unfinished section for the finished work. */
+.wip {
+  background: var(--ch-base, #7a6a58); color: #fff;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+  text-align: center; padding: 8px var(--content-pad, 1.5rem); line-height: 1.5;
+}
+.wip b { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 </style>
 </head>
 <body>
+
+<div class="wip"><b>Work in progress</b> — this site is still being built. Some sections are incomplete.</div>
 
 <header>
   <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
@@ -330,3 +341,14 @@ footer {
   </a>
 
 </div>
+
+<script>
+  // Mobile menu. The button was in the markup with nothing bound to it, so the
+  // hamburger did nothing on a phone.
+  document.getElementById('nav-toggle')?.addEventListener('click',()=>{
+    document.getElementById('main-nav')?.classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>

@@ -439,11 +439,22 @@ footer {
 @media (max-width: 640px) {
   .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
 }
+
+/* ── In-progress notice ───────────────────────────────────
+   Site-wide, so nobody mistakes an unfinished section for the finished work. */
+.wip {
+  background: var(--ch-base, #7a6a58); color: #fff;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+  text-align: center; padding: 8px var(--content-pad, 1.5rem); line-height: 1.5;
+}
+.wip b { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 </style>
 </head>
 <body>
 
 <!-- ═══ HEADER ════════════════════════════════════════════════ -->
+<div class="wip"><b>Work in progress</b> — this site is still being built. Some sections are incomplete.</div>
+
 <header>
   <a href="index.html" class="ch-logo" id="ch-logo">CH</a>
   <span class="site-title">Carolynn Heil Interiors</span>
